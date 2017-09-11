@@ -6,15 +6,20 @@ import Html.Attributes exposing (class)
 import Html.Events exposing (onClick)
 
 
+-- MAIN
+
+
+main : Program Never Model Msg
+main =
+    Html.beginnerProgram { model = model, view = view, update = update }
+
+
+
 -- MODEL
 
 
 type alias Model =
     { currentPage : Page }
-
-
-
--- INIT
 
 
 model : Model
@@ -46,8 +51,8 @@ type Page
 update : Msg -> Model -> Model
 update msg model =
     case msg of
-        Navigate target ->
-            { model | currentPage = target }
+        Navigate page ->
+            { model | currentPage = page }
 
 
 
@@ -57,15 +62,6 @@ update msg model =
 subscriptions : Model -> Sub Msg
 subscriptions model =
     Sub.none
-
-
-
--- MAIN
-
-
-main : Program Never Model Msg
-main =
-    Html.beginnerProgram { model = model, view = view, update = update }
 
 
 
