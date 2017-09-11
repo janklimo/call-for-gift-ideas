@@ -1,9 +1,8 @@
 {
   "name": "rails_new",
-  "private": true,
   "engines": {
-    "node": "6.11.1",
-    "yarn": "0.28.4"
+    "yarn": "0.28.4",
+    "node": "6.11.1"
   },
   "dependencies": {
     "@rails/webpacker": "^3.0.1",
