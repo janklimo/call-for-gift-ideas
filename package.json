@@ -1,7 +1,8 @@
 {
-  "name": "rails_new",
+  "name": "call_for_gift_ideas",
+  "private": true,
   "engines": {
-    "yarn": "0.28.4",
+    "yarn": "1.0.x",
     "node": "6.11.1"
   },
   "dependencies": {
