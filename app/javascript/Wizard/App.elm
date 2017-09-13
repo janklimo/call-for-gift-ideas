@@ -1,42 +1,11 @@
-module Main exposing (..)
+module Wizard.App exposing (..)
 
-import Html exposing (..)
-import Basics exposing (toString)
-import Html.Attributes exposing (class)
-import Html.Events exposing (onClick)
-
-
--- MAIN
+import Html exposing (Html, text, div, h1, button, span)
+import Html.Attributes exposing (..)
+import Html.Events exposing (..)
 
 
-main : Program Never Model Msg
-main =
-    Html.beginnerProgram { model = model, view = view, update = update }
-
-
-
--- MODEL
-
-
-type alias Model =
-    { currentPage : Page }
-
-
-model : Model
-model =
-    Model Welcome
-
-
-
--- MESSAGE
-
-
-type Msg
-    = Navigate Page
-
-
-
--- PAGES
+-- TYPES
 
 
 type Page
@@ -44,19 +13,45 @@ type Page
     | Cards
 
 
+type alias Flags =
+    { recipientName : String
+    }
+
+
+type alias Model =
+    { recipientName : String
+    , currentPage : Page
+    }
+
+
+type Msg
+    = Navigate Page
+
+
+
+-- INIT
+
+
+init : Flags -> ( Model, Cmd Msg )
+init flags =
+    let
+        { recipientName } =
+            flags
+    in
+        ( Model recipientName Welcome, Cmd.none )
+
+
 
 -- UPDATE
 
 
-update : Msg -> Model -> Model
+update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         Navigate page ->
-            { model | currentPage = page }
-
-
-
--- SUBSCRIPTIONS
+            ( { model | currentPage = page }
+            , Cmd.none
+            )
 
 
 subscriptions : Model -> Sub Msg
@@ -68,14 +63,14 @@ subscriptions model =
 -- VIEW
 
 
-renderScreen : Page -> Html Msg
-renderScreen page =
-    case page of
+renderScreen : Model -> Html Msg
+renderScreen model =
+    case model.currentPage of
         Welcome ->
             div [ class "welcome-page" ]
                 [ h1
                     []
-                    [ text "Welcome!" ]
+                    [ text ("Welcome, " ++ model.recipientName ++ "!") ]
                 , span [] [ text "This is the welcome screen." ]
                 , div
                     []
@@ -96,4 +91,4 @@ renderScreen page =
 
 view : Model -> Html Msg
 view model =
-    renderScreen model.currentPage
+    renderScreen model

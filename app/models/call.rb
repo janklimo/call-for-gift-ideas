@@ -1,0 +1,19 @@
+# frozen_string_literal: true
+
+class Call < ApplicationRecord
+  enum status: [:active, :completed]
+
+  before_validation :generate_slug, on: :create
+
+  validates :slug, presence: true
+
+  private
+
+  def generate_slug
+    generator = TokenGenerator.new
+
+    begin
+      self.slug = generator.token
+    end while self.class.exists?(slug: slug)
+  end
+end
