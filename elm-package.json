@@ -1,10 +1,10 @@
 {
     "version": "1.0.0",
-    "summary": "helpful summary of your project, less than 80 characters",
-    "repository": "https://github.com/user/project.git",
+    "summary": "Call for Gift Ideas Front End",
+    "repository": "https://github.com/janklimo/call-for-gift-ideas.git",
     "license": "BSD3",
     "source-directories": [
-        "/Users/Admin/Playground/call-for-gift-ideas/app/javascript"
+        "./app/javascript"
     ],
     "exposed-modules": [],
     "dependencies": {
