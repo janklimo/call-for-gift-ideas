@@ -5,7 +5,8 @@ class Call < ApplicationRecord
 
   before_validation :generate_slug, on: :create
 
-  validates :slug, presence: true
+  validates :slug, :recipient_name, :recipient_email,
+    :sender_email, presence: true
 
   private
 
