@@ -4,7 +4,7 @@
     "repository": "https://github.com/janklimo/call-for-gift-ideas.git",
     "license": "BSD3",
     "source-directories": [
-        "./app/javascript"
+        "app/javascript"
     ],
     "exposed-modules": [],
     "dependencies": {
