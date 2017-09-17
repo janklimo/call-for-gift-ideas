@@ -1,6 +1,6 @@
 module Wizard.App exposing (..)
 
-import Html exposing (Html, text, div, h1, button, span)
+import Html exposing (Html, text, div, h1, button, span, p, a)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
 
@@ -69,12 +69,20 @@ renderScreen model =
         Welcome ->
             div [ class "welcome-page" ]
                 [ h1
-                    []
-                    [ text ("Welcome, " ++ model.recipientName ++ "!") ]
-                , span [] [ text "This is the welcome screen." ]
-                , div
-                    []
-                    [ button [ onClick (Navigate Cards) ] [ text "Let's Go!" ] ]
+                    [ class "text-center" ]
+                    [ text ("Hey, " ++ model.recipientName ++ "!") ]
+                , div [ class "text-center" ]
+                    [ p [] [ text "Somebody wants to get you a present you'll actually love 😻" ]
+                    , p [] [ text "Help them by selecting a handful of options you'd like to find under the 🎄" ]
+                    , p [] [ text "This won't take more than 3 minutes 🚀" ]
+                    , p [] [ text "Ready?" ]
+                    , a
+                        [ class "btn btn-primary"
+                        , onClick (Navigate Cards)
+                        , href "#"
+                        ]
+                        [ text "Let's Go!" ]
+                    ]
                 ]
 
         Cards ->
@@ -82,10 +90,13 @@ renderScreen model =
                 [ h1
                     []
                     [ text "Anything You'd Like?" ]
-                , span [] [ text "This is the cards screen." ]
-                , div
-                    []
-                    [ button [ onClick (Navigate Welcome) ] [ text "Back" ] ]
+                , p [] [ text "This is the cards screen." ]
+                , a
+                    [ class "btn btn-primary"
+                    , onClick (Navigate Welcome)
+                    , href "#"
+                    ]
+                    [ text "Back" ]
                 ]
 
 

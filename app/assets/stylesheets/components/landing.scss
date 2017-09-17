@@ -1,6 +1,13 @@
 .card {
   background-color: white;
-  padding: 1.5rem 2.5rem;
+  padding: 1.75rem 2.5rem;
   box-shadow: 10px 10px 0px rgba(163, 255, 217, 0.82);
   border-radius: 0;
+  max-width: 700px;
+  margin: 0 auto;
+
+  h1 {
+    color: $green;
+    margin-bottom: 2rem;
+  }
 }
