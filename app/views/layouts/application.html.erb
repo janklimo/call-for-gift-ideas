@@ -3,20 +3,20 @@
   <head>
     <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag "wizard" %>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
 
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <%= render partial: 'layouts/favicon' %>
-    <link rel='manifest' href='manifest.json'>
+    <link rel='manifest' href='/manifest.json'>
+    <%= yield :javascript %>
 
     <title><%= yield(:page_title) %></title>
   </head>
 
   <body>
-    <div class="container">
+    <div id="page" class="container">
       <%= render partial: 'layouts/google_analytics' %>
       <%= render partial: 'layouts/flash' %>
       <%= yield %>

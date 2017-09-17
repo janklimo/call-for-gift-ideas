@@ -1,6 +1,13 @@
-<%= content_tag :div,
-  id: "elm-flags",
-  data: { recipientName: @call.recipient_name }.to_json do %>
+<% content_for :page_title, "Hey, #{@call.recipient_name}!" %>
+<% content_for :javascript do %>
+  <%= javascript_pack_tag "wizard" %>
 <% end %>
 
-<div id="wizard"></div>
+<div class="card">
+  <%= content_tag :div,
+    id: "wizard",
+    data: {
+      recipientName: @call.recipient_name
+    }.to_json do %>
+  <% end %>
+</div>

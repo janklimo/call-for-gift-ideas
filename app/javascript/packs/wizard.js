@@ -1,9 +1,7 @@
 import Elm from '../Wizard/Main'
 
 document.addEventListener('DOMContentLoaded', () => {
-  const flagsNode = document.getElementById('elm-flags')
-  const data = JSON.parse(flagsNode.getAttribute('data'))
-
-  const appNode = document.getElementById('wizard');
-  Elm.Wizard.Main.embed(appNode, data)
+  const node = document.getElementById('wizard')
+  const data = JSON.parse(node.getAttribute('data'))
+  Elm.Wizard.Main.embed(node, data)
 })
