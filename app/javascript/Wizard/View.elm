@@ -1,67 +1,10 @@
-module Wizard.App exposing (..)
+module Wizard.View exposing (..)
 
 import Html exposing (Html, text, div, h1, button, span, p, a)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
-import Wizard.Utils exposing (..)
-
-
--- TYPES
-
-
-type Page
-    = Welcome
-    | Cards
-
-
-type alias Flags =
-    { recipientName : String
-    }
-
-
-type alias Model =
-    { recipientName : String
-    , currentPage : Page
-    }
-
-
-type Msg
-    = Navigate Page
-
-
-
--- INIT
-
-
-init : Flags -> ( Model, Cmd Msg )
-init flags =
-    let
-        { recipientName } =
-            flags
-    in
-        Model recipientName Welcome
-            |> withNoCmd
-
-
-
--- UPDATE
-
-
-update : Msg -> Model -> ( Model, Cmd Msg )
-update msg model =
-    case msg of
-        Navigate page ->
-            { model | currentPage = page }
-                |> withNoCmd
-
-
-subscriptions : Model -> Sub Msg
-subscriptions model =
-    Sub.none
-
-
-
--- VIEW
+import Wizard.Models exposing (..)
+import Wizard.Msgs exposing (..)
 
 
 renderScreen : Model -> Html Msg
