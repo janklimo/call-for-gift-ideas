@@ -3,6 +3,7 @@ module Wizard.App exposing (..)
 import Html exposing (Html, text, div, h1, button, span, p, a)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
+import Wizard.Utils exposing (..)
 
 
 -- TYPES
@@ -38,7 +39,8 @@ init flags =
         { recipientName } =
             flags
     in
-        ( Model recipientName Welcome, Cmd.none )
+        Model recipientName Welcome
+            |> withNoCmd
 
 
 
@@ -49,9 +51,8 @@ update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         Navigate page ->
-            ( { model | currentPage = page }
-            , Cmd.none
-            )
+            { model | currentPage = page }
+                |> withNoCmd
 
 
 subscriptions : Model -> Sub Msg
