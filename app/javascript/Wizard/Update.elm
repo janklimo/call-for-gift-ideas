@@ -11,3 +11,25 @@ update msg model =
         Navigate page ->
             { model | currentPage = page }
                 |> withNoCmd
+
+        Like id ->
+            let
+                updateProduct p =
+                    if p.id == id then
+                        { p | liked = Just True }
+                    else
+                        p
+            in
+                { model | products = List.map updateProduct model.products }
+                    |> withNoCmd
+
+        Skip id ->
+            let
+                updateProduct p =
+                    if p.id == id then
+                        { p | liked = Just False }
+                    else
+                        p
+            in
+                { model | products = List.map updateProduct model.products }
+                    |> withNoCmd

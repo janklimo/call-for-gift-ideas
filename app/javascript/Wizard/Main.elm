@@ -14,10 +14,10 @@ import Wizard.Update exposing (update)
 init : Flags -> ( Model, Cmd Msg )
 init flags =
     let
-        { recipientName } =
+        { recipientName, products } =
             flags
     in
-        Model recipientName Welcome
+        Model recipientName Welcome products
             |> withNoCmd
 
 

@@ -5,3 +5,5 @@ import Wizard.Models exposing (..)
 
 type Msg
     = Navigate Page
+    | Like Int
+    | Skip Int

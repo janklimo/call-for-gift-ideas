@@ -7,7 +7,21 @@
   <%= content_tag :div,
     id: "wizard",
     data: {
-      recipientName: @call.recipient_name
+      recipientName: @call.recipient_name,
+      products: [
+        {
+          id: 1,
+          name: 'Two Stage Pro Knife Sharpener',
+          price: 14.99,
+          liked: nil
+        },
+        {
+          id: 2,
+          name: 'Adjustable Grip Wrench',
+          price: 28.48,
+          liked: nil
+        }
+      ]
     }.to_json do %>
   <% end %>
 </div>
