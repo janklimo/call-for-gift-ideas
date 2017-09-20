@@ -11,13 +11,18 @@ import Wizard.Update exposing (update)
 -- INIT
 
 
+withDefaultExtensions : List Product -> List ( Product, Extensions )
+withDefaultExtensions products =
+    List.map (\p -> ( p, defaultExtensions )) products
+
+
 init : Flags -> ( Model, Cmd Msg )
 init flags =
     let
         { recipientName, products } =
             flags
     in
-        Model recipientName Welcome products
+        Model recipientName Welcome (withDefaultExtensions products)
             |> withNoCmd
 
 

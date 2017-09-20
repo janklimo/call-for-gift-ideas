@@ -1,7 +1,4 @@
 <% content_for :page_title, "Welcome, #{@call.recipient_name}!" %>
-<% content_for :javascript do %>
-  <%= javascript_pack_tag "wizard" %>
-<% end %>
 
 <div class="card">
   <%= content_tag :div,
@@ -12,14 +9,12 @@
         {
           id: 1,
           name: 'Two Stage Pro Knife Sharpener',
-          price: 14.99,
-          liked: nil
+          price: 14.99
         },
         {
           id: 2,
           name: 'Adjustable Grip Wrench',
-          price: 28.48,
-          liked: nil
+          price: 28.48
         }
       ]
     }.to_json do %>

@@ -27,17 +27,17 @@ viewWelcomeScreen name =
         ]
 
 
-undecidedProducts : List Product -> List Product
+undecidedProducts : List ( Product, Extensions ) -> List ( Product, Extensions )
 undecidedProducts products =
-    List.filter (\p -> p.liked == Nothing) products
+    List.filter (\( p, e ) -> e.liked == Nothing) products
 
 
-likedProducts : List Product -> List Product
+likedProducts : List ( Product, Extensions ) -> List ( Product, Extensions )
 likedProducts products =
-    List.filter (\p -> p.liked == Just True) products
+    List.filter (\( p, e ) -> e.liked == Just True) products
 
 
-callToAction : List Product -> String
+callToAction : List ( Product, Extensions ) -> String
 callToAction products =
     let
         minimum =
@@ -77,10 +77,10 @@ viewCardsScreen model =
         ]
 
 
-viewCard : Maybe Product -> Html Msg
+viewCard : Maybe ( Product, Extensions ) -> Html Msg
 viewCard product =
     case product of
-        Just product ->
+        Just ( product, extensions ) ->
             div [ class "product-card" ]
                 [ h2 [] [ text product.name ]
                 , p [] [ text ("$" ++ toString product.price) ]

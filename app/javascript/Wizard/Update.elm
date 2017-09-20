@@ -14,22 +14,22 @@ update msg model =
 
         Like id ->
             let
-                updateProduct p =
-                    if p.id == id then
-                        { p | liked = Just True }
+                updateProduct ( product, extensions ) =
+                    if product.id == id then
+                        ( product, { extensions | liked = Just True } )
                     else
-                        p
+                        ( product, extensions )
             in
                 { model | products = List.map updateProduct model.products }
                     |> withNoCmd
 
         Skip id ->
             let
-                updateProduct p =
-                    if p.id == id then
-                        { p | liked = Just False }
+                updateProduct ( product, extensions ) =
+                    if product.id == id then
+                        ( product, { extensions | liked = Just False } )
                     else
-                        p
+                        ( product, extensions )
             in
                 { model | products = List.map updateProduct model.products }
                     |> withNoCmd
