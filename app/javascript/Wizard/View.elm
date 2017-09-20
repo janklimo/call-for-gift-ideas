@@ -5,6 +5,7 @@ import Html.Attributes exposing (..)
 import Html.Events exposing (..)
 import Wizard.Models exposing (..)
 import Wizard.Msgs exposing (..)
+import Wizard.Utils exposing (icon)
 
 
 viewWelcomeScreen : String -> Html Msg
@@ -84,17 +85,17 @@ viewCard product =
                 [ h2 [] [ text product.name ]
                 , p [] [ text ("$" ++ toString product.price) ]
                 , a
-                    [ class "btn btn-secondary"
+                    [ class "btn btn-primary"
                     , onClick (Skip product.id)
                     , href "#"
                     ]
-                    [ text "No" ]
+                    [ icon "close" ]
                 , a
-                    [ class "btn btn-primary"
+                    [ class "btn btn-secondary"
                     , onClick (Like product.id)
                     , href "#"
                     ]
-                    [ text "Yes" ]
+                    [ icon "check" ]
                 ]
 
         Nothing ->
