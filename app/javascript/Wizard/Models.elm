@@ -4,6 +4,7 @@ module Wizard.Models exposing (..)
 type Page
     = Welcome
     | Cards
+    | Sort
 
 
 type alias Flags =

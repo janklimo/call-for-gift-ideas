@@ -37,17 +37,24 @@ likedProducts products =
     List.filter (\( p, e ) -> e.liked == Just True) products
 
 
+likedProductsCount : List ( Product, Extensions ) -> Int
+likedProductsCount products =
+    products
+        |> likedProducts
+        |> List.length
+
+
 callToAction : List ( Product, Extensions ) -> String
 callToAction products =
     let
         minimum =
             2
 
-        likedProductsCount =
-            likedProducts products |> List.length
+        likedCount =
+            likedProductsCount products
 
         likesNeeded =
-            minimum - likedProductsCount
+            minimum - likedCount
 
         optionString =
             if likesNeeded > 1 then
@@ -55,9 +62,9 @@ callToAction products =
             else
                 "option"
     in
-        if likedProductsCount == 0 then
+        if likedCount == 0 then
             "Let's pick your first gift candidate!"
-        else if likedProductsCount < minimum then
+        else if likedCount < minimum then
             "Can you pick at least "
                 ++ toString likesNeeded
                 ++ " more "
@@ -74,6 +81,12 @@ viewCardsScreen model =
         , p []
             [ text (callToAction model.products) ]
         , viewCard (undecidedProducts model.products |> List.head)
+        , a
+            [ class "btn btn-primary"
+            , onClick (Navigate Sort)
+            , href "#"
+            ]
+            [ text "Next" ]
         ]
 
 
@@ -102,8 +115,18 @@ viewCard product =
             div [ class "product-card" ] [ span [] [ text "No products found." ] ]
 
 
-viewScreen : Model -> Html Msg
-viewScreen model =
+viewSortScreen : Model -> Html Msg
+viewSortScreen model =
+    div [ class "sort-page" ]
+        [ div [ class "text-center" ]
+            [ h1 [] [ text "Any Preferences?" ]
+            , p [] [ text "Let's order your wishlist before we're done!" ]
+            ]
+        ]
+
+
+view : Model -> Html Msg
+view model =
     case model.currentPage of
         Welcome ->
             viewWelcomeScreen model.recipientName
@@ -111,7 +134,5 @@ viewScreen model =
         Cards ->
             viewCardsScreen model
 
-
-view : Model -> Html Msg
-view model =
-    viewScreen model
+        Sort ->
+            viewSortScreen model
