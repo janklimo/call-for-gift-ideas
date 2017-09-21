@@ -6,20 +6,11 @@ checkout:
   post:
     - cp config/application.yml.example config/application.yml
 
-#deployment:
-#  production:
-#    branch: master
-#    commands:
-#      # Use this if you want to backup the DB before deployments
-#      - heroku pg:backups capture --app <APPNAME>
-#      # Required to fix this error on CircleCI:
-#      #
-#      # "Push rejected, source repository is a shallow clone.
-#      # Unshallow it with `git fetch --all --unshallow` and try pushing again."
-#      - '[[ ! -s "$(git rev-parse --git-dir)/shallow" ]] || git fetch --unshallow'
-#      - git push git@heroku.com:<APPNAME>.git HEAD:master:
-#          timeout: 300
-#      - heroku run rake db:migrate --app <APPNAME>:
-#          timeout: 300
-#      - heroku restart --app <APPNAME>:
-#          timeout: 300
+deployment:
+  production:
+    branch: master
+    commands:
+      - "[[ ! -s \"$(git rev-parse --git-dir)/shallow\" ]] || git fetch --unshallow"
+      - git push git@heroku.com:call-for-gift-ideas.git $CIRCLE_SHA1:refs/heads/master
+      - heroku run rake db:migrate --app call-for-gift-ideas
+      - heroku restart --app call-for-gift-ideas
