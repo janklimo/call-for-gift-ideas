@@ -19,10 +19,10 @@ withDefaultExtensions products =
 init : Flags -> ( Model, Cmd Msg )
 init flags =
     let
-        { recipientName, products } =
+        { recipient_name, products } =
             flags
     in
-        Model recipientName Welcome (withDefaultExtensions products)
+        Model recipient_name Welcome (withDefaultExtensions products)
             |> withNoCmd
 
 

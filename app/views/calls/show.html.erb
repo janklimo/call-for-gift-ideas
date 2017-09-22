@@ -3,25 +3,6 @@
 <div class="card">
   <%= content_tag :div,
     id: "wizard",
-    data: {
-      recipientName: @call.recipient_name,
-      products: [
-        {
-          id: 1,
-          name: 'Two Stage Pro Knife Sharpener',
-          price: 14.99
-        },
-        {
-          id: 2,
-          name: 'Adjustable Grip Wrench',
-          price: 28.48
-        },
-        {
-          id: 3,
-          name: 'Magical ON/OFF Color Changing Mug',
-          price: 10.99
-        }
-      ]
-    }.to_json do %>
+    data: @call_json do %>
   <% end %>
 </div>

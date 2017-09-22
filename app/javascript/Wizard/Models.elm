@@ -8,7 +8,7 @@ type Page
 
 
 type alias Flags =
-    { recipientName : String
+    { recipient_name : String
     , products : List Product
     }
 
