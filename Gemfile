@@ -60,6 +60,8 @@ gem 'high_voltage', '~> 3.0.0'
 gem 'secure_headers', require: false
 
 gem "administrate"
+gem "paperclip", "~> 5.0.0"
+gem "aws-sdk", "~> 2"
 
 group :production do
   # Remove this if the app is not hosted on Heroku

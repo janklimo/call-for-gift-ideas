@@ -12,6 +12,7 @@ class ProductDashboard < Administrate::BaseDashboard
     name: Field::String,
     price: Field::Number.with_options(decimals: 2),
     description: Field::Text,
+    image: PaperclipField,
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -33,6 +34,7 @@ class ProductDashboard < Administrate::BaseDashboard
     :name,
     :price,
     :description,
+    :image,
   ].freeze
 
   # FORM_ATTRIBUTES
@@ -42,6 +44,7 @@ class ProductDashboard < Administrate::BaseDashboard
     :name,
     :price,
     :description,
+    :image,
   ].freeze
 
   # Overwrite this method to customize how products are displayed
