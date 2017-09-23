@@ -1,11 +1,12 @@
 module Form.Main exposing (..)
 
-import Html exposing (Html, program)
+import Html exposing (Html, program, input, div, form, label, text)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onInput)
 import Wizard.Utils exposing (withNoCmd)
 
 
+main : Program Never Model Msg
 main =
     program
         { init = init
@@ -26,15 +27,11 @@ init =
 
 
 type alias Model =
-    { name : String
-    , password : String
-    , passwordAgain : String
+    { recipientName : String
+    , recipientEmail : String
+    , senderName : String
+    , senderEmail : String
     }
-
-
-model : Model
-model =
-    Model "" "" ""
 
 
 
@@ -42,22 +39,30 @@ model =
 
 
 type Msg
-    = Name String
-    | Password String
-    | PasswordAgain String
+    = RecipientName String
+    | RecipientEmail String
+    | SenderName String
+    | SenderEmail String
 
 
-update : Msg -> Model -> Model
+update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        Name name ->
-            { model | name = name }
+        RecipientName name ->
+            { model | recipientName = name }
+                |> withNoCmd
 
-        Password password ->
-            { model | password = password }
+        RecipientEmail email ->
+            { model | recipientEmail = email }
+                |> withNoCmd
 
-        PasswordAgain password ->
-            { model | passwordAgain = password }
+        SenderName name ->
+            { model | senderName = name }
+                |> withNoCmd
+
+        SenderEmail email ->
+            { model | senderEmail = email }
+                |> withNoCmd
 
 
 
@@ -66,21 +71,53 @@ update msg model =
 
 view : Model -> Html Msg
 view model =
-    div []
-        [ input [ type_ "text", placeholder "Name", onInput Name ] []
-        , input [ type_ "password", placeholder "Password", onInput Password ] []
-        , input [ type_ "password", placeholder "Re-enter Password", onInput PasswordAgain ] []
-        , viewValidation model
+    Html.form []
+        [ div [ class "form-row" ]
+            [ div [ class "form-group col-sm-6" ]
+                [ label [ for "senderName", class "col-form-label" ] [ text "Your Name" ]
+                , input
+                    [ type_ "text"
+                    , id "senderName"
+                    , class "form-control"
+                    , placeholder "Your Name"
+                    , onInput SenderName
+                    ]
+                    []
+                ]
+            , div [ class "form-group col-sm-6" ]
+                [ label [ for "senderEmail", class "col-form-label" ] [ text "Your Email" ]
+                , input
+                    [ type_ "email"
+                    , id "senderEmail"
+                    , class "form-control"
+                    , placeholder "Sender Email"
+                    , onInput SenderEmail
+                    ]
+                    []
+                ]
+            ]
+        , div [ class "form-row" ]
+            [ div [ class "form-group col-sm-6" ]
+                [ label [ for "recipientName", class "col-form-label" ] [ text "Recipient's Name" ]
+                , input
+                    [ type_ "text"
+                    , id "recipientName"
+                    , class "form-control"
+                    , placeholder "Recipient's Name"
+                    , onInput RecipientName
+                    ]
+                    []
+                ]
+            , div [ class "form-group col-sm-6" ]
+                [ label [ for "recipientEmail", class "col-form-label" ] [ text "Recipient's Email" ]
+                , input
+                    [ type_ "email"
+                    , id "recipientEmail"
+                    , class "form-control"
+                    , placeholder "Recipient's Email"
+                    , onInput RecipientEmail
+                    ]
+                    []
+                ]
+            ]
         ]
-
-
-viewValidation : Model -> Html msg
-viewValidation model =
-    let
-        ( color, message ) =
-            if model.password == model.passwordAgain then
-                ( "green", "OK" )
-            else
-                ( "red", "Passwords do not match!" )
-    in
-        div [ style [ ( "color", color ) ] ] [ text message ]
