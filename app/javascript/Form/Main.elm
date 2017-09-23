@@ -1,8 +1,8 @@
 module Form.Main exposing (..)
 
-import Html exposing (Html, program, input, div, form, label, text)
+import Html exposing (Html, program, input, div, form, label, text, a)
 import Html.Attributes exposing (..)
-import Html.Events exposing (onInput)
+import Html.Events exposing (onInput, onClick)
 import Wizard.Utils exposing (withNoCmd)
 
 
@@ -18,7 +18,7 @@ main =
 
 init : ( Model, Cmd Msg )
 init =
-    Model "" "" "" ""
+    Model "" "" "" "" False
         |> withNoCmd
 
 
@@ -31,6 +31,7 @@ type alias Model =
     , recipientEmail : String
     , senderName : String
     , senderEmail : String
+    , validating : Bool
     }
 
 
@@ -43,6 +44,7 @@ type Msg
     | RecipientEmail String
     | SenderName String
     | SenderEmail String
+    | Submit
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -64,6 +66,21 @@ update msg model =
             { model | senderEmail = email }
                 |> withNoCmd
 
+        Submit ->
+            { model | validating = True }
+                |> withNoCmd
+
+
+validate : String -> Bool -> String
+validate input validating =
+    if validating then
+        if String.length input > 0 then
+            "is-valid"
+        else
+            "is-invalid"
+    else
+        ""
+
 
 
 -- VIEW
@@ -78,7 +95,7 @@ view model =
                 , input
                     [ type_ "text"
                     , id "senderName"
-                    , class "form-control"
+                    , class ("form-control " ++ validate model.senderName model.validating)
                     , placeholder "Your Name"
                     , onInput SenderName
                     ]
@@ -89,7 +106,7 @@ view model =
                 , input
                     [ type_ "email"
                     , id "senderEmail"
-                    , class "form-control"
+                    , class ("form-control " ++ validate model.senderEmail model.validating)
                     , placeholder "Sender Email"
                     , onInput SenderEmail
                     ]
@@ -102,7 +119,7 @@ view model =
                 , input
                     [ type_ "text"
                     , id "recipientName"
-                    , class "form-control"
+                    , class ("form-control " ++ validate model.recipientName model.validating)
                     , placeholder "Recipient's Name"
                     , onInput RecipientName
                     ]
@@ -113,11 +130,19 @@ view model =
                 , input
                     [ type_ "email"
                     , id "recipientEmail"
-                    , class "form-control"
+                    , class ("form-control " ++ validate model.recipientEmail model.validating)
                     , placeholder "Recipient's Email"
                     , onInput RecipientEmail
                     ]
                     []
                 ]
+            ]
+        , div [ class "text-center" ]
+            [ a
+                [ class "btn btn-primary"
+                , onClick (Submit)
+                , href "#"
+                ]
+                [ text "Let's Go!" ]
             ]
         ]
