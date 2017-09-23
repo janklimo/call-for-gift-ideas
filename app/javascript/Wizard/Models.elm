@@ -26,6 +26,10 @@ type alias Extensions =
     }
 
 
+type alias Products =
+    List ( Product, Extensions )
+
+
 defaultExtensions : Extensions
 defaultExtensions =
     Extensions Nothing Nothing
@@ -34,5 +38,5 @@ defaultExtensions =
 type alias Model =
     { recipientName : String
     , currentPage : Page
-    , products : List ( Product, Extensions )
+    , products : Products
     }

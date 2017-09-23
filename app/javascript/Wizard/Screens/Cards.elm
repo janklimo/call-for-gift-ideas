@@ -8,17 +8,17 @@ import Wizard.Msgs exposing (..)
 import Wizard.Utils exposing (icon)
 
 
-undecidedProducts : List ( Product, Extensions ) -> List ( Product, Extensions )
+undecidedProducts : Products -> List ( Product, Extensions )
 undecidedProducts products =
     List.filter (\( p, e ) -> e.liked == Nothing) products
 
 
-likedProducts : List ( Product, Extensions ) -> List ( Product, Extensions )
+likedProducts : Products -> List ( Product, Extensions )
 likedProducts products =
     List.filter (\( p, e ) -> e.liked == Just True) products
 
 
-likedProductsCount : List ( Product, Extensions ) -> Int
+likedProductsCount : Products -> Int
 likedProductsCount products =
     products
         |> likedProducts
@@ -30,7 +30,7 @@ minimumLikedCount =
     2
 
 
-callToAction : List ( Product, Extensions ) -> String
+callToAction : Products -> String
 callToAction products =
     let
         likedCount =
