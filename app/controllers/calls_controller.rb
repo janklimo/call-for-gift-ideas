@@ -1,4 +1,6 @@
 class CallsController < ApplicationController
+  skip_before_action :verify_authenticity_token
+
   def show
     @call = Call.active.find_by(slug: params[:id])
     @call_json = ActiveModelSerializers::SerializableResource
