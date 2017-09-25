@@ -18,4 +18,33 @@ describe CallsController, type: :controller do
       end
     end
   end
+
+  describe 'create' do
+    context 'successful creation' do
+      it 'renders successful status' do
+        params = {
+          sender_name: 'Jamie',
+          sender_email: 'jamie@lannister.com',
+          recipient_name: 'Jon',
+          recipient_email: 'jon@snow.com'
+        }
+        post :create, params: params
+        resp = JSON.parse(response.body)
+        expect(resp['status']).to eq 'ok'
+      end
+    end
+
+    context 'failed creation' do
+      it 'renders failed status' do
+        params = {
+          sender_email: 'jamie@lannister.com',
+          recipient_name: 'Jon',
+          recipient_email: 'jon@snow.com'
+        }
+        post :create, params: params
+        resp = JSON.parse(response.body)
+        expect(resp['status']).to eq 'failed'
+      end
+    end
+  end
 end
