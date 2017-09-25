@@ -122,19 +122,28 @@ view model =
                     []
                 ]
             ]
-        , div [ class "text-center" ]
+        , div [ class "text-center mt-3" ]
             [ a
                 [ class "btn btn-primary"
                 , onClick (submitIfValid model)
                 , href "#"
                 ]
                 [ text "Let's Go!" ]
+            , nudgeMessage model
             ]
         ]
 
 
-submitIfValid : Model -> Msg
-submitIfValid model =
+nudgeMessage : Model -> Html Msg
+nudgeMessage model =
+    if not (valid model) && model.validating then
+        div [ class "nudge" ] [ text "All fields are required 😱" ]
+    else
+        div [] []
+
+
+valid : Model -> Bool
+valid model =
     if
         String.length model.recipientName
             > 0
@@ -145,6 +154,14 @@ submitIfValid model =
             && String.length model.senderEmail
             > 0
     then
+        True
+    else
+        False
+
+
+submitIfValid : Model -> Msg
+submitIfValid model =
+    if valid model then
         Submit
     else
         Validate
