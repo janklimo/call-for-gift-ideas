@@ -71,8 +71,8 @@ validate input validating =
 -- VIEW
 
 
-view : Model -> Html Msg
-view model =
+callForm : Model -> Html Msg
+callForm model =
     Html.form []
         [ div [ class "form-row" ]
             [ div [ class "form-group col-sm-6" ]
@@ -122,16 +122,43 @@ view model =
                     []
                 ]
             ]
-        , div [ class "text-center mt-3" ]
+        ]
+
+
+type alias Disabled =
+    Bool
+
+
+submitButton : Model -> Disabled -> Html Msg
+submitButton model disabled =
+    let
+        css =
+            if disabled then
+                "disabled"
+            else
+                ""
+
+        children =
+            case disabled of
+                -- show spinner
+                True ->
+                    div [ class "lds-ripple" ]
+                        [ div [] []
+                        , div [] []
+                        ]
+
+                False ->
+                    text "Let's Go!  🚀"
+    in
+        div [ class "text-center mt-3" ]
             [ a
-                [ class "btn btn-primary"
+                [ class ("btn btn-primary form-submit " ++ css)
                 , onClick (submitIfValid model)
                 , href "#"
                 ]
-                [ text "Let's Go!" ]
+                [ children ]
             , nudgeMessage model
             ]
-        ]
 
 
 nudgeMessage : Model -> Html Msg
@@ -140,6 +167,28 @@ nudgeMessage model =
         div [ class "nudge" ] [ text "All fields are required 😱" ]
     else
         div [] []
+
+
+view : Model -> Html Msg
+view model =
+    case model.requestStatus of
+        NotAsked ->
+            div []
+                [ callForm model
+                , submitButton model False
+                ]
+
+        Loading ->
+            div []
+                [ callForm model
+                , submitButton model True
+                ]
+
+        Failure a ->
+            div [] [ text "oh noez" ]
+
+        Success a ->
+            div [] [ text "yay" ]
 
 
 valid : Model -> Bool
