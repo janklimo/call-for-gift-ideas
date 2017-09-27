@@ -3,8 +3,7 @@ module Form.Main exposing (..)
 import Html exposing (Html, program, input, div, form, label, text, a)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onInput)
-import RemoteData exposing (RemoteData(..), WebData)
-import RemoteData.Http
+import RemoteData exposing (RemoteData(..))
 import Form.Models exposing (..)
 import Form.Msgs exposing (..)
 import Form.Requests exposing (..)
@@ -46,11 +45,7 @@ update msg model =
 
         Submit ->
             ( { model | requestStatus = Loading }
-            , RemoteData.Http.post
-                createCallUrl
-                HandleCreateCallResponse
-                callDecoder
-                (callEncoder model)
+            , createCallMsg model
             )
 
         HandleCreateCallResponse data ->

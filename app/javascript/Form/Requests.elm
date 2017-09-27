@@ -2,9 +2,9 @@ module Form.Requests exposing (..)
 
 import Json.Decode as Decode exposing (..)
 import Json.Encode as Encode exposing (..)
-import Http
 import RemoteData.Http
 import Form.Models exposing (..)
+import Form.Msgs exposing (..)
 
 
 createCallUrl : String
@@ -25,3 +25,12 @@ callEncoder model =
         , ( "recipient_name", Encode.string model.recipientName )
         , ( "recipient_email", Encode.string model.recipientEmail )
         ]
+
+
+createCallMsg : Model -> Cmd Msg
+createCallMsg model =
+    RemoteData.Http.post
+        createCallUrl
+        HandleCreateCallResponse
+        callDecoder
+        (callEncoder model)
