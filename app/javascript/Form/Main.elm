@@ -2,12 +2,13 @@ module Form.Main exposing (..)
 
 import Html exposing (Html, program, input, div, form, label, text, a)
 import Html.Attributes exposing (..)
-import Html.Events exposing (onInput, onClick)
+import Html.Events exposing (onInput)
 import RemoteData exposing (RemoteData(..), WebData)
 import RemoteData.Http
 import Form.Models exposing (..)
 import Form.Msgs exposing (..)
 import Form.Requests exposing (..)
+import Utils exposing (onClick)
 
 
 main : Program Never Model Msg

@@ -2,10 +2,10 @@ module Wizard.Screens.Cards exposing (viewCardsScreen)
 
 import Html exposing (Html, text, div, h1, h2, button, span, p, a)
 import Html.Attributes exposing (..)
-import Html.Events exposing (..)
 import Wizard.Models exposing (..)
 import Wizard.Msgs exposing (..)
 import Wizard.Utils exposing (icon)
+import Utils exposing (onClick)
 
 
 undecidedProducts : Products -> List ( Product, Extensions )
