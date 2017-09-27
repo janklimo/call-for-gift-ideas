@@ -11,3 +11,5 @@ type Msg
     | Submit
     | Validate
     | HandleCreateCallResponse (WebData String)
+    | BackToFormResetRecipient
+    | BackToFormWithoutReset
