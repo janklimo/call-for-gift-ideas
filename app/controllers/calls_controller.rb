@@ -24,7 +24,8 @@ class CallsController < ApplicationController
       :sender_name,
       :sender_email,
       :recipient_name,
-      :recipient_email
+      :recipient_email,
+      :recipient_sex,
     )
   end
 end

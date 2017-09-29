@@ -24,6 +24,7 @@ callEncoder model =
         , ( "sender_email", Encode.string model.senderEmail )
         , ( "recipient_name", Encode.string model.recipientName )
         , ( "recipient_email", Encode.string model.recipientEmail )
+        , ( "recipient_sex", Encode.string model.recipientSex )
         ]
 
 

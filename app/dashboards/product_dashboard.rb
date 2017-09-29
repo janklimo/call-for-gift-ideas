@@ -25,7 +25,7 @@ class ProductDashboard < Administrate::BaseDashboard
     :id,
     :name,
     :price,
-    :description,
+    :target_audience,
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES

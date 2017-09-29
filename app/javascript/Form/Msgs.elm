@@ -13,3 +13,4 @@ type Msg
     | HandleCreateCallResponse (WebData String)
     | BackToFormResetRecipient
     | BackToFormWithoutReset
+    | RecipientSex String

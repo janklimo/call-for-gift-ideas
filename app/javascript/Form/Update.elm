@@ -15,6 +15,9 @@ update msg model =
         RecipientEmail email ->
             { model | recipientEmail = email } ! []
 
+        RecipientSex sex ->
+            { model | recipientSex = sex } ! []
+
         SenderName name ->
             { model | senderName = name } ! []
 

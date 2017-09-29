@@ -2,6 +2,7 @@
 
 class Call < ApplicationRecord
   enum status: [:active, :completed]
+  enum recipient_sex: [:male, :female]
 
   before_validation :generate_slug, on: :create
 

@@ -1,6 +1,19 @@
 module Form.Components.Form exposing (callForm)
 
-import Html exposing (Html, input, div, form, label, text, a, h1, p)
+import Html
+    exposing
+        ( Html
+        , input
+        , div
+        , form
+        , label
+        , text
+        , a
+        , h1
+        , p
+        , select
+        , option
+        )
 import Html.Attributes exposing (..)
 import Html.Events exposing (onInput)
 import Form.Models exposing (..)
@@ -48,7 +61,7 @@ callForm model =
                 ]
             ]
         , div [ class "form-row" ]
-            [ div [ class "form-group col-sm-6" ]
+            [ div [ class "form-group col-sm-4" ]
                 [ label [ for "recipientName", class "col-form-label" ] [ text "Recipient's Name" ]
                 , input
                     [ type_ "text"
@@ -60,7 +73,7 @@ callForm model =
                     ]
                     []
                 ]
-            , div [ class "form-group col-sm-6" ]
+            , div [ class "form-group col-sm-5" ]
                 [ label [ for "recipientEmail", class "col-form-label" ] [ text "Recipient's Email" ]
                 , input
                     [ type_ "email"
@@ -71,6 +84,17 @@ callForm model =
                     , onInput RecipientEmail
                     ]
                     []
+                ]
+            , div [ class "form-group col-sm-3" ]
+                [ label [ for "recipientSex", class "col-form-label" ] [ text "Recipient's Sex" ]
+                , select
+                    [ class ("form-control " ++ validate model.recipientSex model.validating)
+                    , id "recipientSex"
+                    , onInput RecipientSex
+                    ]
+                    [ option [ value "male" ] [ text "Male 👨" ]
+                    , option [ value "female" ] [ text "Female 👩" ]
+                    ]
                 ]
             ]
         ]

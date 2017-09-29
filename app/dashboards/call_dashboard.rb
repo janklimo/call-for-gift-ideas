@@ -12,6 +12,7 @@ class CallDashboard < Administrate::BaseDashboard
     slug: Field::String,
     recipient_name: Field::String,
     recipient_email: Field::String,
+    recipient_sex: Enum.with_options(searchable: false),
     sender_name: Field::String,
     sender_email: Field::String,
     status: Enum.with_options(searchable: false),
@@ -30,6 +31,7 @@ class CallDashboard < Administrate::BaseDashboard
     :slug,
     :recipient_name,
     :recipient_email,
+    :recipient_sex,
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -39,6 +41,7 @@ class CallDashboard < Administrate::BaseDashboard
     :slug,
     :recipient_name,
     :recipient_email,
+    :recipient_sex,
     :sender_name,
     :sender_email,
     :status,
@@ -54,6 +57,7 @@ class CallDashboard < Administrate::BaseDashboard
     :slug,
     :recipient_name,
     :recipient_email,
+    :recipient_sex,
     :sender_email,
     :status,
     :preferences,
