@@ -8,6 +8,14 @@ import Form.Common exposing (valid)
 import Utils exposing (onClick)
 
 
+nudgeMessage : Model -> Html Msg
+nudgeMessage model =
+    if not (valid model) && model.validating then
+        div [ class "nudge" ] [ text "All fields are required 😱" ]
+    else
+        div [] []
+
+
 type alias Disabled =
     Bool
 
@@ -42,11 +50,3 @@ submitButton model msg disabled =
                 [ children ]
             , nudgeMessage model
             ]
-
-
-nudgeMessage : Model -> Html Msg
-nudgeMessage model =
-    if not (valid model) && model.validating then
-        div [ class "nudge" ] [ text "All fields are required 😱" ]
-    else
-        div [] []

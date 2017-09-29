@@ -7,6 +7,11 @@ import Form.View exposing (view)
 import Form.Update exposing (update)
 
 
+init : ( Model, Cmd Msg )
+init =
+    initialModel ! []
+
+
 main : Program Never Model Msg
 main =
     program
@@ -15,8 +20,3 @@ main =
         , subscriptions = always Sub.none
         , view = view
         }
-
-
-init : ( Model, Cmd Msg )
-init =
-    initialModel ! []

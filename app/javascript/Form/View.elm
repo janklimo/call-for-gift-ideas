@@ -14,6 +14,14 @@ import Form.Components.Form exposing (callForm)
 import Form.Components.SubmitButton exposing (submitButton)
 
 
+submitIfValid : Model -> Msg
+submitIfValid model =
+    if valid model then
+        Submit
+    else
+        Validate
+
+
 view : Model -> Html Msg
 view model =
     case model.requestStatus of
@@ -58,11 +66,3 @@ view model =
                 , p [ class "mb-4" ] [ text "Ready to send another one?" ]
                 , submitButton model BackToFormResetRecipient False
                 ]
-
-
-submitIfValid : Model -> Msg
-submitIfValid model =
-    if valid model then
-        Submit
-    else
-        Validate

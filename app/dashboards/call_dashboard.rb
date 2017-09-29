@@ -14,7 +14,7 @@ class CallDashboard < Administrate::BaseDashboard
     recipient_email: Field::String,
     sender_name: Field::String,
     sender_email: Field::String,
-    status: Field::String.with_options(searchable: false),
+    status: Enum.with_options(searchable: false),
     preferences: Field::Text,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,

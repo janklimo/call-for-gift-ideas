@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Product < ApplicationRecord
+  enum target_audience: [:for_men, :for_women, :unisex]
+
   has_attached_file :image,
     url: ':s3_domain_url',
     path: 'products/:id/:basename.:hash.:extension',
