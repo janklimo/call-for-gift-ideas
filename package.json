@@ -12,8 +12,7 @@
     "elm-webpack-loader": "^4.3.1",
     "jquery": "^3.2.1",
     "jquery-ujs": "^1.2.2",
-    "popper.js": "^1.12.4",
-    "webworker-preload": "^0.0.1"
+    "popper.js": "^1.12.4"
   },
   "devDependencies": {
     "elm-hot-loader": "^0.5.4",
