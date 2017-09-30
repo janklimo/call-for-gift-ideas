@@ -14,4 +14,5 @@
 //= require jquery-ujs/src/rails
 //= require popper.js/dist/umd/popper
 //= require bootstrap/dist/js/bootstrap
+//= require webworker-preload/dist/webworker-preload.min
 //= require_tree .

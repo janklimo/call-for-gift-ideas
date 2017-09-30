@@ -217,6 +217,7 @@ GEM
     pundit (1.1.0)
       activesupport (>= 3.0.0)
     rack (2.0.3)
+    rack-cors (1.0.1)
     rack-mini-profiler (0.10.5)
       rack (>= 1.2.0)
     rack-protection (2.0.0)
@@ -396,6 +397,7 @@ DEPENDENCIES
   pry-rails
   puma (~> 3.7)
   pundit
+  rack-cors
   rack-mini-profiler
   rack-timeout
   rails (~> 5.1.4)

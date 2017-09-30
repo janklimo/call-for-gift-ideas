@@ -2047,7 +2047,7 @@ event-emitter@~0.3.5:
     d "1"
     es5-ext "~0.10.14"
 
-eventemitter3@1.x.x:
+eventemitter3@1.x.x, eventemitter3@^1.1.1:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/eventemitter3/-/eventemitter3-1.2.0.tgz#1c86991d816ad1e504750e73874224ecf3bec508"
 
@@ -5494,6 +5494,12 @@ text-table@~0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/text-table/-/text-table-0.2.0.tgz#7f5ee823ae805207c00af2df4a84ec3fcfa570b4"
 
+threadpool-js@0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/threadpool-js/-/threadpool-js-0.5.0.tgz#5115d0b26a921c0b7bca20f4028f6eba156ac1ef"
+  dependencies:
+    eventemitter3 "^1.1.1"
+
 through@^2.3.6:
   version "2.3.8"
   resolved "https://registry.yarnpkg.com/through/-/through-2.3.8.tgz#0dd4c9ffaabc357960b1b724115d7e0e86a2e1f5"
@@ -5823,6 +5829,12 @@ websocket-driver@>=0.5.1:
 websocket-extensions@>=0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/websocket-extensions/-/websocket-extensions-0.1.1.tgz#76899499c184b6ef754377c2dbb0cd6cb55d29e7"
+
+webworker-preload@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/webworker-preload/-/webworker-preload-0.0.1.tgz#317d266ae7d64cb92628e6d8ef01d6fe70e8868b"
+  dependencies:
+    threadpool-js "0.5.0"
 
 whatwg-fetch@>=0.10.0:
   version "2.0.3"

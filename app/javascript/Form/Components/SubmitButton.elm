@@ -1,6 +1,6 @@
 module Form.Components.SubmitButton exposing (submitButton)
 
-import Html exposing (Html, div, text, a)
+import Html exposing (Html, div, text, a, img)
 import Html.Attributes exposing (..)
 import Form.Models exposing (..)
 import Form.Msgs exposing (..)
@@ -33,10 +33,12 @@ submitButton model msg disabled =
             case disabled of
                 -- show spinner
                 True ->
-                    div [ class "lds-ripple" ]
-                        [ div [] []
-                        , div [] []
+                    img
+                        [ src
+                            "https://s3-us-west-2.amazonaws.com/callforgiftideas/ripple.gif"
+                        , class "ripple"
                         ]
+                        []
 
                 False ->
                     text "Let's Go!  🚀"
