@@ -23,4 +23,18 @@ describe Call, type: :model do
     call.sender_email = 'mike.tyson@gmail.com'
     expect(call).to be_valid
   end
+
+  describe 'products' do
+    before do
+      allow_any_instance_of(Paperclip::Attachment).to receive(:save).and_return(true)
+      @drill = create(:product, name: 'Drill', target_audience: :men)
+      @jet = create(:product, name: 'Jet', target_audience: :men)
+      @makeup = create(:product, name: 'Makeup', target_audience: :women)
+      @call = create(:call, recipient_sex: :female)
+    end
+
+    it 'loads the correct products' do
+      expect(@call.products).to eq [@makeup]
+    end
+  end
 end

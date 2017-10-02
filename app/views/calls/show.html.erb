@@ -1,4 +1,7 @@
 <% content_for :page_title, "Welcome, #{@call.recipient_name}!" %>
+<% content_for :preloader do %>
+  <%= javascript_tag "var preload = #{ @call.product_urls.to_json.html_safe };" %>
+<% end %>
 
 <div class="card">
   <%= content_tag :div,

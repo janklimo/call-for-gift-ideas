@@ -3,7 +3,7 @@ class CallSerializer < ActiveModel::Serializer
 
   def products
     ActiveModelSerializers::SerializableResource.new(
-      Product.all,
+      object.products,
       each_serializer: ProductSerializer
     )
   end

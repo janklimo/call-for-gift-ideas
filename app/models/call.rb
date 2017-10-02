@@ -9,6 +9,16 @@ class Call < ApplicationRecord
   validates :slug, :recipient_name, :recipient_email,
     :sender_name, :sender_email, presence: true
 
+  def products
+    Product.where(
+      target_audience: [Call.recipient_sexes[recipient_sex], :unisex]
+    )
+  end
+
+  def product_urls
+    products.map { |p| p.image.url }
+  end
+
   private
 
   def generate_slug
