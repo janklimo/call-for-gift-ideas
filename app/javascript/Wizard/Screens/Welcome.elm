@@ -17,10 +17,10 @@ viewWelcomeScreen name =
             , p [] [ text "This won't take more than 3 minutes 🚀" ]
             , p [] [ text "Ready?" ]
             , a
-                [ class "btn btn-primary"
+                [ class "btn btn-primary form-submit"
                 , onClick (Navigate Cards)
                 , href "#"
                 ]
-                [ text "Let's Go!" ]
+                [ text "Let's Go!  🚀" ]
             ]
         ]

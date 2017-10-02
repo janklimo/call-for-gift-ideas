@@ -1,6 +1,6 @@
 module Wizard.Screens.Cards exposing (viewCardsScreen)
 
-import Html exposing (Html, text, div, h1, h2, button, span, p, a)
+import Html exposing (Html, text, div, h1, h2, button, span, p, a, img)
 import Html.Attributes exposing (..)
 import Wizard.Models exposing (..)
 import Wizard.Msgs exposing (..)
@@ -79,6 +79,7 @@ viewCard product =
             div [ class "product-card" ]
                 [ h2 [] [ text product.name ]
                 , p [] [ text ("$" ++ toString product.price) ]
+                , img [ src product.image_url ] []
                 , a
                     [ class "btn btn-primary"
                     , onClick (Skip product.id)
