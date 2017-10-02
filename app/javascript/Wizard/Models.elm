@@ -17,6 +17,8 @@ type alias Product =
     { id : Int
     , name : String
     , price : Float
+    , description : String
+    , url : String
     , image_url : String
     }
 

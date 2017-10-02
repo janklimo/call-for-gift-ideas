@@ -77,9 +77,13 @@ viewCard product =
     case product of
         Just ( product, extensions ) ->
             div [ class "product-card" ]
-                [ h2 [] [ text product.name ]
+                [ img [ src product.image_url, class "img-fluid" ] []
+                , h2 [] [ text product.name ]
                 , p [] [ text ("$" ++ toString product.price) ]
-                , img [ src product.image_url ] []
+                , p [] [ text product.description ]
+                , div []
+                    [ a [ href product.url, target "_blank" ] [ text "Learn more" ]
+                    ]
                 , a
                     [ class "btn btn-primary"
                     , onClick (Skip product.id)

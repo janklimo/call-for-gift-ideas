@@ -12,6 +12,7 @@ class ProductDashboard < Administrate::BaseDashboard
     name: Field::String,
     price: Field::Number.with_options(decimals: 2),
     description: Field::Text,
+    url: Field::Text,
     image: PaperclipField,
     target_audience: Enum.with_options(searchable: false),
   }.freeze
@@ -37,6 +38,7 @@ class ProductDashboard < Administrate::BaseDashboard
     :description,
     :image,
     :target_audience,
+    :url,
   ].freeze
 
   # FORM_ATTRIBUTES
@@ -48,6 +50,7 @@ class ProductDashboard < Administrate::BaseDashboard
     :description,
     :image,
     :target_audience,
+    :url,
   ].freeze
 
   # Overwrite this method to customize how products are displayed
