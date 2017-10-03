@@ -3,9 +3,7 @@
   <%= javascript_tag "var preload = #{ @call.product_urls.to_json.html_safe };" %>
 <% end %>
 
-<div class="card">
-  <%= content_tag :div,
-    id: "wizard",
-    data: @call_json do %>
-  <% end %>
-</div>
+<%= content_tag :div,
+  id: "wizard",
+  data: @call_json do %>
+<% end %>

@@ -1,10 +1,61 @@
-.product-card {
-  .btn {
+.product {
+  .btn.round {
     margin-right: 1.25rem;
     font-size: 1.5rem;
     width: 4rem;
     height: 4rem;
     border-radius: 50%;
     padding: 18px;
+
+    &:last-child {
+      margin-right: 0;
+    }
   }
+
+  .buttons {
+    margin-bottom: 14px;
+  }
+
+  .product-description {
+    padding: 22px 10px 26px;
+
+    .name {
+      width: 73%;
+      float: left;
+      color: #e8898f;
+      margin-bottom: 12px;
+    }
+
+    .description {
+      clear: both;
+      color: #afafaf;
+    }
+
+    .price {
+      font-size: 12px;
+      margin-left: 10px;
+      color: #787878;
+    }
+
+    .more {
+      float: right;
+      border: 1px solid $green;
+      color: $green;
+      font-size: 12px;
+
+      &:hover {
+        color: white;
+        background: $green;
+      }
+    }
+  }
+}
+
+#yes-or-no {
+  max-width: 440px;
+  padding: 10px;
+}
+
+.card.leader {
+  padding: 20px 10px 10px;
 }

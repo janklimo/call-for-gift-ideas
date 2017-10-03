@@ -1,6 +1,6 @@
 module Wizard.Screens.Cards exposing (viewCardsScreen)
 
-import Html exposing (Html, text, div, h1, h2, button, span, p, a, img)
+import Html exposing (Html, text, div, h1, h2, button, span, p, a, img, i)
 import Html.Attributes exposing (..)
 import Wizard.Models exposing (..)
 import Wizard.Msgs exposing (..)
@@ -30,7 +30,7 @@ minimumLikedCount =
     2
 
 
-callToAction : Products -> String
+callToAction : Products -> Html Msg
 callToAction products =
     let
         likedCount =
@@ -46,15 +46,22 @@ callToAction products =
                 "option"
     in
         if likedCount == 0 then
-            "Let's pick your first gift candidate!"
+            text "Let's pick your first gift candidate!"
         else if likesNeeded > 0 then
-            "Can you pick at least "
-                ++ toString likesNeeded
-                ++ " more "
-                ++ optionString
-                ++ "?"
+            text
+                ("Can you pick at least "
+                    ++ toString likesNeeded
+                    ++ " more "
+                    ++ optionString
+                    ++ "?"
+                )
         else
-            "Awesome! Hit Next below whenever you're ready!"
+            span []
+                [ text "Awesome! Hit "
+                , i []
+                    [ text "Next" ]
+                , text " below whenever you're ready!"
+                ]
 
 
 nextButton : Int -> Html Msg
@@ -78,24 +85,28 @@ viewCard product =
         Just ( product, extensions ) ->
             div [ class "product-card" ]
                 [ img [ src product.image_url, class "img-fluid" ] []
-                , h2 [] [ text product.name ]
-                , p [] [ text ("$" ++ toString product.price) ]
-                , p [] [ text product.description ]
-                , div []
-                    [ a [ href product.url, target "_blank" ] [ text "Learn more" ]
+                , div [ class "product-description" ]
+                    [ h2 [ class "name" ]
+                        [ text product.name
+                        , span [ class "price" ] [ text ("$" ++ toString product.price) ]
+                        ]
+                    , a [ href product.url, target "_blank", class "btn more" ] [ text "Learn more" ]
+                    , p [ class "description" ] [ text product.description ]
                     ]
-                , a
-                    [ class "btn btn-primary"
-                    , onClick (Skip product.id)
-                    , href "#"
+                , div [ class "text-center buttons" ]
+                    [ a
+                        [ class "btn btn-primary round"
+                        , onClick (Skip product.id)
+                        , href "#"
+                        ]
+                        [ icon "close" ]
+                    , a
+                        [ class "btn btn-secondary round"
+                        , onClick (Like product.id)
+                        , href "#"
+                        ]
+                        [ icon "check" ]
                     ]
-                    [ icon "close" ]
-                , a
-                    [ class "btn btn-secondary"
-                    , onClick (Like product.id)
-                    , href "#"
-                    ]
-                    [ icon "check" ]
                 ]
 
         Nothing ->
@@ -104,11 +115,18 @@ viewCard product =
 
 viewCardsScreen : Model -> Html Msg
 viewCardsScreen model =
-    div [ class "cards-page" ]
-        [ div [ class "text-center" ]
-            [ h1 [] [ text "Anything You'd Like?" ]
-            , p [] [ text (callToAction model.products) ]
+    div []
+        -- header card with headline and call to action
+        [ div [ class "card leader" ]
+            [ div [ class "text-center" ]
+                [ h1 [] [ text "Anything You'd Like?" ]
+                , p [] [ callToAction model.products ]
+                ]
             ]
-        , viewCard (undecidedProducts model.products |> List.head)
-        , nextButton <| likedProductsCount model.products
+
+        -- product card
+        , div [ id "yes-or-no", class "card product" ]
+            [ viewCard (undecidedProducts model.products |> List.head)
+            , nextButton <| likedProductsCount model.products
+            ]
         ]

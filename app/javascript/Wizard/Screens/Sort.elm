@@ -8,7 +8,7 @@ import Wizard.Msgs exposing (..)
 
 viewSortScreen : Model -> Html Msg
 viewSortScreen model =
-    div [ class "sort-page" ]
+    div [ class "card" ]
         [ div [ class "text-center" ]
             [ h1 [] [ text "Any Preferences?" ]
             , p [] [ text "Let's order your wishlist before we're done!" ]

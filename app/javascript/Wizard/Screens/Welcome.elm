@@ -9,7 +9,7 @@ import Utils exposing (onClick)
 
 viewWelcomeScreen : String -> Html Msg
 viewWelcomeScreen name =
-    div [ class "welcome-page" ]
+    div [ class "card welcome-page" ]
         [ h1 [ class "text-center" ] [ text ("Hey, " ++ name ++ "!") ]
         , div [ class "text-center" ]
             [ p [] [ text "Somebody wants to get you a present you'll actually love 😻" ]
