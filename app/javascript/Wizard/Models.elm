@@ -25,6 +25,7 @@ type alias Product =
 
 type alias Extensions =
     { liked : Maybe Bool
+    , seen : Bool
     , rank : Maybe Int
     }
 
@@ -35,7 +36,7 @@ type alias Products =
 
 defaultExtensions : Extensions
 defaultExtensions =
-    Extensions Nothing Nothing
+    Extensions Nothing False Nothing
 
 
 type alias Model =

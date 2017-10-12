@@ -7,3 +7,4 @@ type Msg
     = Navigate Page
     | Like Int
     | Skip Int
+    | StartAgain

@@ -10,7 +10,7 @@ import Utils exposing (onClick)
 
 undecidedProducts : Products -> List ( Product, Extensions )
 undecidedProducts products =
-    List.filter (\( p, e ) -> e.liked == Nothing) products
+    List.filter (\( p, e ) -> e.seen == False) products
 
 
 likedProducts : Products -> List ( Product, Extensions )
@@ -56,27 +56,40 @@ callToAction products =
                     ++ "?"
                 )
         else
-            span []
-                [ text "Awesome! Hit "
-                , i []
-                    [ text "Next" ]
-                , text " below whenever you're ready!"
+            div []
+                [ p []
+                    [ text "Awesome! Hit "
+                    , i []
+                        [ text "Next" ]
+                    , text " below whenever you're ready!"
+                    ]
+                , nextButton products
                 ]
 
 
-nextButton : Int -> Html Msg
-nextButton count =
-    if count >= minimumLikedCount then
+nextButton : Products -> Html Msg
+nextButton products =
+    if likedProductsCount products >= minimumLikedCount then
         div [ class "text-center" ]
             [ a
-                [ class "btn btn-primary"
+                [ class "btn btn-primary form-submit"
                 , onClick (Navigate Sort)
                 , href "#"
                 ]
-                [ text "Next" ]
+                [ text "Next  🚀" ]
             ]
     else
-        div [] []
+        text ""
+
+
+nextButtonCard : Products -> Html Msg
+nextButtonCard products =
+    if likedProductsCount products >= minimumLikedCount then
+        div [ id "next", class "card product" ]
+            [ nextButton products
+            ]
+    else
+        text ""
 
 
 viewCard : Maybe ( Product, Extensions ) -> Html Msg
@@ -110,7 +123,16 @@ viewCard product =
                 ]
 
         Nothing ->
-            div [ class "product-card" ] [ span [] [ text "No products found." ] ]
+            div [ class "product-card text-center" ]
+                [ p [] [ text "You've gone through all the gift ideas we had 😱" ]
+                , p [] [ text "Wanna give them a quick second look?" ]
+                , a
+                    [ class "btn btn-primary form-submit"
+                    , onClick StartAgain
+                    , href "#"
+                    ]
+                    [ text "Ok \x1F917" ]
+                ]
 
 
 viewCardsScreen : Model -> Html Msg
@@ -127,6 +149,6 @@ viewCardsScreen model =
         -- product card
         , div [ id "yes-or-no", class "card product" ]
             [ viewCard (undecidedProducts model.products |> List.head)
-            , nextButton <| likedProductsCount model.products
             ]
+        , nextButtonCard model.products
         ]

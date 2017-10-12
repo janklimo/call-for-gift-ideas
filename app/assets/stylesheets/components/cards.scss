@@ -51,9 +51,14 @@
   }
 }
 
-#yes-or-no {
+.card#yes-or-no {
   max-width: 440px;
   padding: 10px;
+}
+
+.card#next {
+  padding: 1rem;
+  max-width: 270px;
 }
 
 .card.leader {

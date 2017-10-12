@@ -1,7 +1,6 @@
 module Wizard.Main exposing (..)
 
 import Html exposing (programWithFlags)
-import Wizard.Utils exposing (..)
 import Wizard.Msgs exposing (..)
 import Wizard.View exposing (view)
 import Wizard.Models exposing (..)
@@ -22,8 +21,7 @@ init flags =
         { recipient_name, products } =
             flags
     in
-        Model recipient_name Welcome (withDefaultExtensions products)
-            |> withNoCmd
+        Model recipient_name Welcome (withDefaultExtensions products) ! []
 
 
 subscriptions : Model -> Sub Msg
