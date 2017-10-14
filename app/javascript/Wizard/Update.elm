@@ -2,6 +2,7 @@ module Wizard.Update exposing (..)
 
 import Wizard.Msgs exposing (..)
 import Wizard.Models exposing (..)
+import Wizard.Utils exposing (likedProductsCount)
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -16,8 +17,9 @@ update msg model =
                     if product.id == id then
                         ( product
                         , { extensions
-                            | liked = Just True
+                            | liked = True
                             , seen = True
+                            , rank = Just (likedProductsCount model.products + 1)
                           }
                         )
                     else
@@ -30,12 +32,7 @@ update msg model =
             let
                 updateProduct ( product, extensions ) =
                     if product.id == id then
-                        ( product
-                        , { extensions
-                            | liked = Just False
-                            , seen = True
-                          }
-                        )
+                        ( product, { extensions | seen = True } )
                     else
                         ( product, extensions )
             in
@@ -46,7 +43,7 @@ update msg model =
             let
                 -- set all the seen and not liked products to not seen
                 updateProduct ( product, extensions ) =
-                    if extensions.seen == True && extensions.liked == Just False then
+                    if extensions.seen == True && extensions.liked == False then
                         ( product, { extensions | seen = False } )
                     else
                         ( product, extensions )

@@ -4,30 +4,8 @@ import Html exposing (Html, text, div, h1, h2, button, span, p, a, img, i)
 import Html.Attributes exposing (..)
 import Wizard.Models exposing (..)
 import Wizard.Msgs exposing (..)
-import Wizard.Utils exposing (icon)
+import Wizard.Utils exposing (icon, likedProductsCount, undecidedProducts, minimumLikedCount)
 import Utils exposing (onClick)
-
-
-undecidedProducts : Products -> List ( Product, Extensions )
-undecidedProducts products =
-    List.filter (\( p, e ) -> e.seen == False) products
-
-
-likedProducts : Products -> List ( Product, Extensions )
-likedProducts products =
-    List.filter (\( p, e ) -> e.liked == Just True) products
-
-
-likedProductsCount : Products -> Int
-likedProductsCount products =
-    products
-        |> likedProducts
-        |> List.length
-
-
-minimumLikedCount : Int
-minimumLikedCount =
-    2
 
 
 callToAction : Products -> Html Msg
