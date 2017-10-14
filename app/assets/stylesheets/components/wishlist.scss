@@ -1,0 +1,11 @@
+.wishlist-item {
+  box-shadow: 5px 5px 0px rgba(232, 136, 142, 0.6);
+  margin: 18px 0;
+  border: 1px solid #f1b6ba;
+  border-radius: 5px;
+}
+
+.wishlist-item__image {
+  max-width: 175px;
+  border-radius: 5px 0 0 5px;
+}

@@ -30,6 +30,11 @@ likedProductsCount products =
         |> List.length
 
 
+sortedByRank : Products -> Products
+sortedByRank products =
+    List.sortBy (\( p, e ) -> e.rank) products
+
+
 minimumLikedCount : Int
 minimumLikedCount =
     2

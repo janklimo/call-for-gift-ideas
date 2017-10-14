@@ -8,3 +8,4 @@ type Msg
     | Like Int
     | Skip Int
     | StartAgain
+    | Up Int

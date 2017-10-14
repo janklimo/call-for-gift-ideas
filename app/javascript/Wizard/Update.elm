@@ -19,7 +19,7 @@ update msg model =
                         , { extensions
                             | liked = True
                             , seen = True
-                            , rank = Just (likedProductsCount model.products + 1)
+                            , rank = likedProductsCount model.products + 1
                           }
                         )
                     else
@@ -49,3 +49,18 @@ update msg model =
                         ( product, extensions )
             in
                 { model | products = List.map updateProduct model.products } ! []
+
+        Up productRank ->
+            let
+                updateProduct ( product, extensions ) =
+                    -- decrease the rank = move the product up
+                    if extensions.rank == productRank then
+                        ( product, { extensions | rank = extensions.rank - 1 } )
+                        -- product that used to be here moves down
+                    else if extensions.rank == (productRank - 1) then
+                        ( product, { extensions | rank = extensions.rank + 1 } )
+                    else
+                        ( product, extensions )
+            in
+                { model | products = List.map updateProduct model.products }
+                    ! []
