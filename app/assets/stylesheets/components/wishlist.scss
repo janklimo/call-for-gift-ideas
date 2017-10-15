@@ -6,12 +6,10 @@
 }
 
 .wishlist-item__image-container {
-  display: inline;
-  position: relative;
+  padding: 0;
 }
 
 .wishlist-item__image {
-  max-width: 175px;
   border-radius: 5px 0 0 5px;
 }
 
@@ -33,4 +31,12 @@
 
 .wishlist-items-container {
   margin: 20px 0;
+}
+
+
+// mobile friendliness
+@include media-breakpoint-down(xs) {
+  .wishlist-item__image {
+    border-radius: 5px 5px 0 0;
+  }
 }

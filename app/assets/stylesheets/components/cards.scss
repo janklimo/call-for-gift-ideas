@@ -20,8 +20,6 @@
     padding: 22px 10px 26px;
 
     .name {
-      width: 73%;
-      float: left;
       color: #e8898f;
       margin-bottom: 12px;
     }
@@ -37,11 +35,15 @@
       color: #787878;
     }
 
+    .more-container {
+      text-align: right;
+    }
+
     .more {
-      float: right;
       border: 1px solid $green;
       color: $green;
       font-size: 12px;
+      margin-bottom: 18px;
 
       &:hover {
         color: white;
@@ -63,4 +65,11 @@
 
 .card.leader {
   padding: 20px 10px 10px;
+}
+
+// mobile friendliness
+@include media-breakpoint-down(xs) {
+  .product .product-description .more-container {
+    text-align: left;
+  }
 }

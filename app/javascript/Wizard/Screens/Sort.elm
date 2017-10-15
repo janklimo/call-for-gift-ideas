@@ -30,9 +30,9 @@ viewWishlist : Products -> Html Msg
 viewWishlist products =
     let
         productRow ( product, extensions ) =
-            div [ class "wishlist-item" ]
-                [ div [ class "wishlist-item__image-container" ]
-                    [ img [ class "wishlist-item__image", src product.image_url ] []
+            div [ class "row wishlist-item" ]
+                [ div [ class "wishlist-item__image-container col-sm-3" ]
+                    [ img [ class "wishlist-item__image img-fluid", src product.image_url ] []
                     , span [ class "wishlist-item__rank" ] [ text (toString extensions.rank) ]
                     ]
                 , span [ class "wishlist-item__name" ] [ text product.name ]
