@@ -10,15 +10,19 @@ import Utils exposing (onClick)
 
 viewSortScreen : Model -> Html Msg
 viewSortScreen model =
-    div [ class "card" ]
+    div [ class "card", id "sort-screen" ]
         [ div [ class "text-center" ]
             [ h1 [] [ text "Any Preferences?" ]
             , p [] [ text "Let's order your wishlist before we're done!" ]
             ]
-        , model.products
-            |> likedProducts
-            |> sortedByRank
-            |> viewWishlist
+        , div [ class "wishlist-items-container" ]
+            [ h2 [ class "text-center" ] [ text "OMG I need this in my life  😻" ]
+            , model.products
+                |> likedProducts
+                |> sortedByRank
+                |> viewWishlist
+            , h2 [ class "text-center" ] [ text "Nice to have" ]
+            ]
         ]
 
 
@@ -27,7 +31,10 @@ viewWishlist products =
     let
         productRow ( product, extensions ) =
             div [ class "wishlist-item" ]
-                [ img [ class "wishlist-item__image", src product.image_url ] []
+                [ div [ class "wishlist-item__image-container" ]
+                    [ img [ class "wishlist-item__image", src product.image_url ] []
+                    , span [ class "wishlist-item__rank" ] [ text (toString extensions.rank) ]
+                    ]
                 , span [ class "wishlist-item__name" ] [ text product.name ]
                 , upvoteButton extensions.rank
                 , downvoteButton extensions.rank products

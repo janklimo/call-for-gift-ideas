@@ -5,7 +5,32 @@
   border-radius: 5px;
 }
 
+.wishlist-item__image-container {
+  display: inline;
+  position: relative;
+}
+
 .wishlist-item__image {
   max-width: 175px;
   border-radius: 5px 0 0 5px;
+}
+
+.wishlist-item__rank {
+  position: absolute;
+  left: 0;
+  padding: 6px 10px;
+  background: #f1b6ba;
+  color: white;
+  font-size: 14px;
+  font-weight: bolder;
+  border-radius: 0 0 5px 0;
+}
+
+#sort-screen h2 {
+  font-size: 18px;
+  color: #f18bab;
+}
+
+.wishlist-items-container {
+  margin: 20px 0;
 }
