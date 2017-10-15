@@ -30,6 +30,7 @@ viewWishlist products =
                 [ img [ class "wishlist-item__image", src product.image_url ] []
                 , span [ class "wishlist-item__name" ] [ text product.name ]
                 , upvoteButton extensions.rank
+                , downvoteButton extensions.rank products
                 ]
     in
         div [ class "wishlist-container" ] (List.map productRow products)
@@ -44,6 +45,20 @@ upvoteButton rank =
             , onClick (Up rank)
             , href "#"
             ]
-            [ text "Up" ]
+            [ icon "arrow-up" ]
+    else
+        text ""
+
+
+downvoteButton : Int -> Products -> Html Msg
+downvoteButton rank products =
+    -- can't move the last product down
+    if rank < List.length products then
+        a
+            [ class "btn btn-primary"
+            , onClick (Down rank)
+            , href "#"
+            ]
+            [ icon "arrow-down" ]
     else
         text ""

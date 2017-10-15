@@ -35,6 +35,16 @@ sortedByRank products =
     List.sortBy (\( p, e ) -> e.rank) products
 
 
+upvote : ( Product, Extensions ) -> ( Product, Extensions )
+upvote ( product, extensions ) =
+    ( product, { extensions | rank = extensions.rank - 1 } )
+
+
+downvote : ( Product, Extensions ) -> ( Product, Extensions )
+downvote ( product, extensions ) =
+    ( product, { extensions | rank = extensions.rank + 1 } )
+
+
 minimumLikedCount : Int
 minimumLikedCount =
     2

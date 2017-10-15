@@ -2,7 +2,7 @@ module Wizard.Update exposing (..)
 
 import Wizard.Msgs exposing (..)
 import Wizard.Models exposing (..)
-import Wizard.Utils exposing (likedProductsCount)
+import Wizard.Utils exposing (..)
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -25,8 +25,7 @@ update msg model =
                     else
                         ( product, extensions )
             in
-                { model | products = List.map updateProduct model.products }
-                    ! []
+                { model | products = List.map updateProduct model.products } ! []
 
         Skip id ->
             let
@@ -36,8 +35,7 @@ update msg model =
                     else
                         ( product, extensions )
             in
-                { model | products = List.map updateProduct model.products }
-                    ! []
+                { model | products = List.map updateProduct model.products } ! []
 
         StartAgain ->
             let
@@ -53,14 +51,23 @@ update msg model =
         Up productRank ->
             let
                 updateProduct ( product, extensions ) =
-                    -- decrease the rank = move the product up
                     if extensions.rank == productRank then
-                        ( product, { extensions | rank = extensions.rank - 1 } )
-                        -- product that used to be here moves down
+                        upvote ( product, extensions )
                     else if extensions.rank == (productRank - 1) then
-                        ( product, { extensions | rank = extensions.rank + 1 } )
+                        downvote ( product, extensions )
                     else
                         ( product, extensions )
             in
-                { model | products = List.map updateProduct model.products }
-                    ! []
+                { model | products = List.map updateProduct model.products } ! []
+
+        Down productRank ->
+            let
+                updateProduct ( product, extensions ) =
+                    if extensions.rank == productRank then
+                        downvote ( product, extensions )
+                    else if extensions.rank == (productRank + 1) then
+                        upvote ( product, extensions )
+                    else
+                        ( product, extensions )
+            in
+                { model | products = List.map updateProduct model.products } ! []

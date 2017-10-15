@@ -9,3 +9,4 @@ type Msg
     | Skip Int
     | StartAgain
     | Up Int
+    | Down Int
