@@ -10,13 +10,11 @@ class Call < ApplicationRecord
     :sender_name, :sender_email, presence: true
 
   def products
-    Product.where(
-      target_audience: [Call.recipient_sexes[recipient_sex], :unisex]
-    )
+    Product.where(target_audience: Call.recipient_sexes[recipient_sex])
   end
 
   def product_urls
-    products.map { |p| p.image.url }
+    products.map(&:image_url)
   end
 
   private

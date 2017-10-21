@@ -12,8 +12,8 @@ class ProductDashboard < Administrate::BaseDashboard
     name: Field::String,
     price: Field::Number.with_options(decimals: 2),
     description: Field::Text,
-    url: Field::Text,
-    image: PaperclipField,
+    url: Field::String,
+    image_url: ImageField,
     target_audience: Enum.with_options(searchable: false),
   }.freeze
 
@@ -24,6 +24,7 @@ class ProductDashboard < Administrate::BaseDashboard
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
     :id,
+    :image_url,
     :name,
     :price,
     :target_audience,
@@ -36,8 +37,8 @@ class ProductDashboard < Administrate::BaseDashboard
     :name,
     :price,
     :description,
-    :image,
     :target_audience,
+    :image_url,
     :url,
   ].freeze
 
@@ -48,9 +49,9 @@ class ProductDashboard < Administrate::BaseDashboard
     :name,
     :price,
     :description,
-    :image,
     :target_audience,
     :url,
+    :image_url,
   ].freeze
 
   # Overwrite this method to customize how products are displayed

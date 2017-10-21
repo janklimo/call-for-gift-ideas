@@ -3,7 +3,7 @@ FactoryGirl.define do
     name 'Drill'
     price 11.99
     description 'The best drill you can imagine.'
-    image { File.new("#{Rails.root}/spec/support/fixtures/image.png") }
+    image_url 'http://i.imgur.com/2O8vjfv.gif'
     target_audience :men
     url 'http://amzn.to/12345abc'
   end
