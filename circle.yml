@@ -1,3 +1,6 @@
+machine:
+  node:
+    version: 8.5.0
 dependencies:
   post:
     - bundle exec bundle-audit check --update
