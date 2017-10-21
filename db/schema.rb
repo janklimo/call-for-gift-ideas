@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171021081841) do
+ActiveRecord::Schema.define(version: 20171021105105) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,8 @@ ActiveRecord::Schema.define(version: 20171021081841) do
     t.integer "target_audience", default: 0, null: false
     t.text "url"
     t.string "image_url"
+    t.integer "external_id"
+    t.index ["external_id"], name: "index_products_on_external_id", unique: true
   end
 
   create_table "users", force: :cascade do |t|

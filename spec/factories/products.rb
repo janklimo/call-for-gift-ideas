@@ -6,5 +6,6 @@ FactoryGirl.define do
     image_url 'http://i.imgur.com/2O8vjfv.gif'
     target_audience :men
     url 'http://amzn.to/12345abc'
+    sequence(:external_id, 1000)
   end
 end

@@ -63,6 +63,7 @@ gem "administrate"
 gem "paperclip", "~> 5.0.0"
 gem "aws-sdk", "~> 2"
 gem 'rack-cors', :require => 'rack/cors'
+gem 'httparty'
 
 group :production do
   # Remove this if the app is not hosted on Heroku
