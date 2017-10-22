@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171022152819) do
+ActiveRecord::Schema.define(version: 20171022155241) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20171022152819) do
     t.string "image_url"
     t.integer "external_id"
     t.float "clicks_score"
+    t.index ["clicks_score"], name: "index_products_on_clicks_score"
     t.index ["external_id"], name: "index_products_on_external_id", unique: true
   end
 
