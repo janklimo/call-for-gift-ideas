@@ -1,10 +1,7 @@
 module Wizard.Models exposing (..)
 
-
-type Page
-    = Welcome
-    | Cards
-    | Sort
+import Animation.Messenger
+import Wizard.Msgs exposing (..)
 
 
 type alias Flags =
@@ -43,4 +40,5 @@ type alias Model =
     { recipientName : String
     , currentPage : Page
     , products : Products
+    , cardStyle : Animation.Messenger.State Msg
     }

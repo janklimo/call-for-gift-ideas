@@ -6,6 +6,8 @@ import Wizard.Models exposing (..)
 import Wizard.Msgs exposing (..)
 import Wizard.Utils exposing (icon, likedProductsCount, undecidedProducts, minimumLikedCount)
 import Utils exposing (onClick)
+import Animation
+import Animation.Messenger
 
 
 callToAction : Products -> Html Msg
@@ -70,11 +72,11 @@ nextButtonCard products =
         text ""
 
 
-viewCard : Maybe ( Product, Extensions ) -> Html Msg
-viewCard product =
+viewCard : Maybe ( Product, Extensions ) -> Animation.Messenger.State msgA -> Html Msg
+viewCard product cardStyle =
     case product of
         Just ( product, extensions ) ->
-            div [ class "product-card" ]
+            div (Animation.render cardStyle ++ [ class "product-card" ])
                 [ img [ src product.image_url, class "img-fluid" ] []
                 , div [ class "product-description" ]
                     [ div [ class "row" ]
@@ -93,13 +95,13 @@ viewCard product =
                 , div [ class "text-center buttons" ]
                     [ a
                         [ class "btn btn-primary round"
-                        , onClick (Skip product.id)
+                        , onClick <| FadeInFadeOut (Skip product.id)
                         , href "#"
                         ]
                         [ icon "close" ]
                     , a
                         [ class "btn btn-secondary round"
-                        , onClick (Like product.id)
+                        , onClick <| FadeInFadeOut (Like product.id)
                         , href "#"
                         ]
                         [ icon "check" ]
@@ -132,7 +134,7 @@ viewCardsScreen model =
 
         -- product card
         , div [ id "yes-or-no", class "card product" ]
-            [ viewCard (undecidedProducts model.products |> List.head)
+            [ viewCard (undecidedProducts model.products |> List.head) model.cardStyle
             ]
         , nextButtonCard model.products
         ]

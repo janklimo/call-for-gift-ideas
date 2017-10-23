@@ -1,6 +1,12 @@
 module Wizard.Msgs exposing (..)
 
-import Wizard.Models exposing (..)
+import Animation
+
+
+type Page
+    = Welcome
+    | Cards
+    | Sort
 
 
 type Msg
@@ -10,3 +16,5 @@ type Msg
     | StartAgain
     | Up Int
     | Down Int
+    | Animate Animation.Msg
+    | FadeInFadeOut Msg

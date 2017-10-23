@@ -2,7 +2,6 @@ module Wizard.Screens.Welcome exposing (viewWelcomeScreen)
 
 import Html exposing (Html, text, div, h1, h2, button, span, p, a)
 import Html.Attributes exposing (..)
-import Wizard.Models exposing (..)
 import Wizard.Msgs exposing (..)
 import Utils exposing (onClick)
 

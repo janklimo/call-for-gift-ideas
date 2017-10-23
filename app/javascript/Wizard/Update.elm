@@ -3,6 +3,9 @@ module Wizard.Update exposing (..)
 import Wizard.Msgs exposing (..)
 import Wizard.Models exposing (..)
 import Wizard.Utils exposing (..)
+import Time exposing (second)
+import Animation
+import Animation.Messenger
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -71,3 +74,37 @@ update msg model =
                         ( product, extensions )
             in
                 { model | products = List.map updateProduct model.products } ! []
+
+        Animate animMsg ->
+            let
+                ( newStyle, cmd ) =
+                    Animation.Messenger.update animMsg model.cardStyle
+            in
+                ( { model | cardStyle = newStyle }, cmd )
+
+        FadeInFadeOut msg ->
+            ({ model
+                | cardStyle =
+                    Animation.interrupt
+                        [ Animation.toWith
+                            (Animation.easing
+                                { duration = 0.25 * second
+                                , ease = (\x -> x ^ 2)
+                                }
+                            )
+                            [ Animation.opacity 0
+                            ]
+                        , Animation.Messenger.send msg
+                        , Animation.toWith
+                            (Animation.easing
+                                { duration = 0.25 * second
+                                , ease = (\x -> x ^ 2)
+                                }
+                            )
+                            [ Animation.opacity 1
+                            ]
+                        ]
+                        model.cardStyle
+             }
+                ! []
+            )

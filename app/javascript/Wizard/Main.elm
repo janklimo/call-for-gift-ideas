@@ -5,6 +5,7 @@ import Wizard.Msgs exposing (..)
 import Wizard.View exposing (view)
 import Wizard.Models exposing (..)
 import Wizard.Update exposing (update)
+import Animation
 
 
 -- INIT
@@ -20,13 +21,17 @@ init flags =
     let
         { recipient_name, products } =
             flags
+
+        initialCardStyle =
+            Animation.style [ Animation.opacity 1.0 ]
     in
-        Model recipient_name Welcome (withDefaultExtensions products) ! []
+        Model recipient_name Welcome (withDefaultExtensions products) initialCardStyle
+            ! []
 
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
-    Sub.none
+    Animation.subscription Animate [ model.cardStyle ]
 
 
 
