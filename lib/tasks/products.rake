@@ -21,7 +21,7 @@ namespace :products do
         posts.each do |post|
           product = Product.find_or_initialize_by(external_id: post['id'])
           product.name = post['title']
-          product.description = post['content']
+          product.description = ActionController::Base.helpers.strip_tags(post['content'])
           product.price = post['price']
           product.clicks_score = post['clicks_score']
           product.url = post['link']
