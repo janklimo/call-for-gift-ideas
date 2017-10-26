@@ -3,16 +3,13 @@ dependencies:
     - |
       if [ ! -d sysconfcpus/bin ];
       then
-        git clone https://github.com/obmarg/libsysconfcpus.git;
+        git clone https://github.com/obmarg/libsysconfcpus.git $HOME/dependencies/libsysconfcpus
         cd libsysconfcpus;
-        ./configure --prefix=$TRAVIS_BUILD_DIR/sysconfcpus;
+        .configure --prefix=$HOME/dependencies/sysconfcpus;
         make && make install;
-        cd ..;
       fi
   post:
     - bundle exec bundle-audit check --update
-  cache_directories:
-    - "sysconfcpus"
 
 checkout:
   post:
