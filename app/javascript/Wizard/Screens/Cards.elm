@@ -77,7 +77,9 @@ viewCard product cardStyle =
     case product of
         Just ( product, extensions ) ->
             div (Animation.render cardStyle ++ [ class "product-card" ])
-                [ img [ src product.image_url, class "img-fluid" ] []
+                [ div [ class "image-container text-center" ]
+                    [ img [ src product.image_url, class "img-fluid" ] []
+                    ]
                 , div [ class "product-description" ]
                     [ div [ class "row" ]
                         [ div [ class "col-sm-9" ]
