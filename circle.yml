@@ -1,13 +1,4 @@
 dependencies:
-  pre:
-    - |
-      if [ ! -d sysconfcpus/bin ];
-      then
-        git clone https://github.com/obmarg/libsysconfcpus.git $HOME/dependencies/libsysconfcpus
-        cd libsysconfcpus;
-        .configure --prefix=$HOME/dependencies/sysconfcpus;
-        make && make install;
-      fi
   post:
     - bundle exec bundle-audit check --update
 
