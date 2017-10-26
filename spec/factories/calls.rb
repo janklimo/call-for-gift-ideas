@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :call do
     recipient_name 'Jon'
     recipient_email 'jon@snow.com'

@@ -13,7 +13,7 @@ describe Call, type: :model do
   end
 
   it 'validates stuff' do
-    call = FactoryGirl.build(:call, recipient_name: nil, recipient_email: nil,
+    call = build(:call, recipient_name: nil, recipient_email: nil,
                             sender_email: nil)
     expect(call).not_to be_valid
     call.recipient_name = 'Jon'

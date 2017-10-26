@@ -108,9 +108,8 @@ end
 group :test do
   gem 'bundler-audit', require: false
   gem 'capybara', '~> 2.13.0'
-  gem 'factory_girl_rails'
-  gem 'poltergeist'
-  gem 'rspec-rails', '~> 3.5'
+  gem 'factory_bot_rails'
+  gem 'rspec-rails', '~> 3.7'
   gem 'selenium-webdriver'
   gem 'shoulda-matchers'
   gem 'webmock'

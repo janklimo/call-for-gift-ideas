@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :product do
     name 'Drill'
     price 11.99
