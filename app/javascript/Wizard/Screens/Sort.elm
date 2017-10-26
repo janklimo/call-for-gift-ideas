@@ -35,9 +35,14 @@ viewWishlist products =
                     [ img [ class "wishlist-item__image img-fluid", src product.image_url ] []
                     , span [ class "wishlist-item__rank" ] [ text (toString extensions.rank) ]
                     ]
-                , span [ class "wishlist-item__name" ] [ text product.name ]
-                , upvoteButton extensions.rank
-                , downvoteButton extensions.rank products
+                , div [ class "col-sm-6" ]
+                    [ p [ class "wishlist-item__name" ] [ text product.name ]
+                    , p [ class "wishlist-item__price" ] [ text <| "$" ++ toString product.price ]
+                    ]
+                , div [ class "wishlist-item__buttons col-sm-3" ]
+                    [ upvoteButton extensions.rank
+                    , downvoteButton extensions.rank products
+                    ]
                 ]
     in
         div [ class "wishlist-container" ] (List.map productRow products)
@@ -48,7 +53,7 @@ upvoteButton rank =
     -- can't move #1 product up
     if rank > 1 then
         a
-            [ class "btn btn-primary"
+            [ class "btn btn-secondary round"
             , onClick (Up rank)
             , href "#"
             ]
@@ -62,7 +67,7 @@ downvoteButton rank products =
     -- can't move the last product down
     if rank < List.length products then
         a
-            [ class "btn btn-primary"
+            [ class "btn btn-primary round"
             , onClick (Down rank)
             , href "#"
             ]
