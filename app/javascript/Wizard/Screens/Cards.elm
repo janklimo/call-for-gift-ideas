@@ -8,6 +8,8 @@ import Wizard.Utils exposing (icon, likedProductsCount, undecidedProducts, minim
 import Utils exposing (onClick)
 import Animation
 import Animation.Messenger
+import Bootstrap.Modal as Modal
+import Bootstrap.Button as Button
 
 
 callToAction : Products -> Html Msg
@@ -131,6 +133,7 @@ viewCardsScreen model =
             [ div [ class "text-center" ]
                 [ h1 [] [ text "Anything You'd Like?" ]
                 , p [] [ callToAction model.products ]
+                , viewModal model
                 ]
             ]
 
@@ -139,4 +142,32 @@ viewCardsScreen model =
             [ viewCard (undecidedProducts model.products |> List.head) model.cardStyle
             ]
         , nextButtonCard model.products
+        ]
+
+
+viewModal : Model -> Html Msg
+viewModal model =
+    div []
+        [ Button.button
+            [ Button.outlineSuccess
+            , Button.attrs [ onClick <| ModalMsg Modal.visibleState ]
+            ]
+            [ text "Open modal" ]
+        , Modal.config ModalMsg
+            |> Modal.small
+            |> Modal.h5 [] [ text "Remove this item?" ]
+            |> Modal.body [] [ p [] [ text "This is a modal for you !" ] ]
+            |> Modal.footer []
+                [ Button.button
+                    [ Button.outlineSecondary
+                    , Button.attrs [ onClick <| ModalMsg Modal.hiddenState ]
+                    ]
+                    [ text "Close" ]
+                , Button.button
+                    [ Button.primary
+                    , Button.attrs [ onClick <| ModalMsg Modal.hiddenState ]
+                    ]
+                    [ text "Remove" ]
+                ]
+            |> Modal.view model.modalState
         ]

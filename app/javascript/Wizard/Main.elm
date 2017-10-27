@@ -6,6 +6,7 @@ import Wizard.View exposing (view)
 import Wizard.Models exposing (..)
 import Wizard.Update exposing (update)
 import Animation
+import Bootstrap.Modal as Modal
 
 
 -- INIT
@@ -25,7 +26,7 @@ init flags =
         initialCardStyle =
             Animation.style [ Animation.opacity 1.0 ]
     in
-        Model recipient_name Welcome (withDefaultExtensions products) initialCardStyle
+        Model recipient_name Welcome (withDefaultExtensions products) initialCardStyle Modal.hiddenState
             ! []
 
 

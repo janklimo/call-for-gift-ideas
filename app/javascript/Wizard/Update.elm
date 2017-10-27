@@ -108,3 +108,6 @@ update msg model =
              }
                 ! []
             )
+
+        ModalMsg state ->
+            { model | modalState = state } ! []

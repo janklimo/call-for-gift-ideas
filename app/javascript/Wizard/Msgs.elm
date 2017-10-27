@@ -1,6 +1,7 @@
 module Wizard.Msgs exposing (..)
 
 import Animation
+import Bootstrap.Modal as Modal
 
 
 type Page
@@ -18,3 +19,4 @@ type Msg
     | Down Int
     | Animate Animation.Msg
     | FadeInFadeOut Msg
+    | ModalMsg Modal.State

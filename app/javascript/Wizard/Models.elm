@@ -2,6 +2,7 @@ module Wizard.Models exposing (..)
 
 import Animation.Messenger
 import Wizard.Msgs exposing (..)
+import Bootstrap.Modal as Modal
 
 
 type alias Flags =
@@ -41,4 +42,5 @@ type alias Model =
     , currentPage : Page
     , products : Products
     , cardStyle : Animation.Messenger.State Msg
+    , modalState : Modal.State
     }
