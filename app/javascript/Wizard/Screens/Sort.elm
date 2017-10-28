@@ -1,13 +1,21 @@
 module Wizard.Screens.Sort exposing (viewSortScreen)
 
+-- external dependencies
+
 import Html exposing (Html, text, div, h1, h2, span, p, a, img)
 import Html.Attributes exposing (..)
+import Animation
+import Set exposing (Set)
+import Bootstrap.Modal as Modal
+
+
+-- internal dependencies
+
 import Wizard.Models exposing (..)
 import Wizard.Msgs exposing (..)
 import Wizard.Utils exposing (..)
+import Wizard.Components.ConfirmationModal exposing (confirmationModal)
 import Utils exposing (onClick)
-import Animation
-import Set exposing (Set)
 
 
 viewSortScreen : Model -> Html Msg
@@ -22,6 +30,7 @@ viewSortScreen model =
             , viewWishlist model
             , h2 [ class "text-center" ] [ text "Nice to have" ]
             ]
+        , confirmationModal model.modalState
         ]
 
 
@@ -56,6 +65,7 @@ viewWishlist model =
                     , div [ class "wishlist-item__buttons col-sm-3" ]
                         [ upvoteButton extensions.rank
                         , downvoteButton extensions.rank products
+                        , a [ onClick <| ModalMsg Modal.visibleState, href "#" ] [ text "Delete" ]
                         ]
                     ]
     in
