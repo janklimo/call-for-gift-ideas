@@ -1,4 +1,5 @@
 .wishlist-item {
+  position: relative;
   box-shadow: 5px 5px 0px rgba(232, 136, 142, 0.6);
   margin: 18px 0;
   border: 1px solid #f1b6ba;
@@ -21,8 +22,14 @@
 }
 
 .wishlist-item__buttons {
-  padding: 33px 22px 0 0;
+  padding: 20px 22px 0 0;
   text-align: right;
+}
+
+.wishlist-item__delete-link {
+  position: absolute;
+  bottom: 5px;
+  right: 8px;
 }
 
 .wishlist-item__price {

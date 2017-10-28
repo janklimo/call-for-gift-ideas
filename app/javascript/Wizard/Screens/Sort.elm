@@ -65,8 +65,13 @@ viewWishlist model =
                     , div [ class "wishlist-item__buttons col-sm-3" ]
                         [ upvoteButton extensions.rank
                         , downvoteButton extensions.rank products
-                        , a [ onClick <| ModalMsg Modal.visibleState, href "#" ] [ text "Delete" ]
                         ]
+                    , a
+                        [ class "wishlist-item__delete-link"
+                        , onClick <| ModalMsg Modal.visibleState
+                        , href "#"
+                        ]
+                        [ text "Delete" ]
                     ]
     in
         div [ class "wishlist-container" ] (List.map productRow products)
