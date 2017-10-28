@@ -7,10 +7,7 @@ import Wizard.Msgs exposing (..)
 import Wizard.Utils exposing (..)
 import Utils exposing (onClick)
 import Animation
-import Animation.Messenger
-
-
--- import Set exposing (Set)
+import Set exposing (Set)
 
 
 viewSortScreen : Model -> Html Msg
@@ -22,23 +19,30 @@ viewSortScreen model =
             ]
         , div [ class "wishlist-items-container" ]
             [ h2 [ class "text-center" ] [ text "OMG I need this in my life  😻" ]
-            , model.products
-                |> likedProducts
-                |> sortedByRank
-                |> viewWishlist model.cardStyle
+            , viewWishlist model
             , h2 [ class "text-center" ] [ text "Nice to have" ]
             ]
         ]
 
 
-viewWishlist : Animation.Messenger.State msgA -> List ( Product, Extensions ) -> Html Msg
-viewWishlist cardStyle products =
+viewWishlist : Model -> Html Msg
+viewWishlist model =
     let
+        products =
+            model.products
+                |> likedProducts
+                |> sortedByRank
+
+        productRow : ( Product, Extensions ) -> Html Msg
         productRow ( product, extensions ) =
             let
+                -- only animate the two cards that are being swapped
+                -- defined as Set named cardRanksToSwap
                 animationStyle =
-                    -- this is nonsense, need to pass the whole model because I need the set cardRanksToSwap
-                    Animation.render cardStyle
+                    if Set.member extensions.rank model.cardRanksToSwap then
+                        Animation.render model.cardStyle
+                    else
+                        []
             in
                 div (animationStyle ++ [ class "row wishlist-item" ])
                     [ div [ class "wishlist-item__image-container col-sm-3" ]

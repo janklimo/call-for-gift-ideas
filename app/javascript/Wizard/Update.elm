@@ -9,6 +9,30 @@ import Animation.Messenger
 import Set exposing (Set)
 
 
+fadeInFadeOut : Msg -> Model -> Animation.Messenger.State Msg
+fadeInFadeOut msg model =
+    Animation.interrupt
+        [ Animation.toWith
+            (Animation.easing
+                { duration = 0.25 * second
+                , ease = (\x -> x ^ 2)
+                }
+            )
+            [ Animation.opacity 0
+            ]
+        , Animation.Messenger.send msg
+        , Animation.toWith
+            (Animation.easing
+                { duration = 0.25 * second
+                , ease = (\x -> x ^ 2)
+                }
+            )
+            [ Animation.opacity 1
+            ]
+        ]
+        model.cardStyle
+
+
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
@@ -84,31 +108,7 @@ update msg model =
                 ( { model | cardStyle = newStyle }, cmd )
 
         FadeInFadeOut msg ->
-            ({ model
-                | cardStyle =
-                    Animation.interrupt
-                        [ Animation.toWith
-                            (Animation.easing
-                                { duration = 0.25 * second
-                                , ease = (\x -> x ^ 2)
-                                }
-                            )
-                            [ Animation.opacity 0
-                            ]
-                        , Animation.Messenger.send msg
-                        , Animation.toWith
-                            (Animation.easing
-                                { duration = 0.25 * second
-                                , ease = (\x -> x ^ 2)
-                                }
-                            )
-                            [ Animation.opacity 1
-                            ]
-                        ]
-                        model.cardStyle
-             }
-                ! []
-            )
+            { model | cardStyle = fadeInFadeOut msg model } ! []
 
         SwapCards msg ->
             let
@@ -125,27 +125,7 @@ update msg model =
             in
                 { model
                     | cardRanksToSwap = cardRanksToSwap
-                    , cardStyle =
-                        Animation.interrupt
-                            [ Animation.toWith
-                                (Animation.easing
-                                    { duration = 0.25 * second
-                                    , ease = (\x -> x ^ 2)
-                                    }
-                                )
-                                [ Animation.opacity 0
-                                ]
-                            , Animation.Messenger.send msg
-                            , Animation.toWith
-                                (Animation.easing
-                                    { duration = 0.25 * second
-                                    , ease = (\x -> x ^ 2)
-                                    }
-                                )
-                                [ Animation.opacity 1
-                                ]
-                            ]
-                            model.cardStyle
+                    , cardStyle = fadeInFadeOut msg model
                 }
                     ! []
 
