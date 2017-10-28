@@ -3,6 +3,7 @@ module Wizard.Models exposing (..)
 import Animation.Messenger
 import Wizard.Msgs exposing (..)
 import Bootstrap.Modal as Modal
+import Set exposing (Set)
 
 
 type alias Flags =
@@ -43,4 +44,5 @@ type alias Model =
     , products : Products
     , cardStyle : Animation.Messenger.State Msg
     , modalState : Modal.State
+    , cardRanksToSwap : Set Int
     }

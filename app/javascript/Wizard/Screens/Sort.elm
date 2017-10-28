@@ -6,6 +6,11 @@ import Wizard.Models exposing (..)
 import Wizard.Msgs exposing (..)
 import Wizard.Utils exposing (..)
 import Utils exposing (onClick)
+import Animation
+import Animation.Messenger
+
+
+-- import Set exposing (Set)
 
 
 viewSortScreen : Model -> Html Msg
@@ -20,30 +25,35 @@ viewSortScreen model =
             , model.products
                 |> likedProducts
                 |> sortedByRank
-                |> viewWishlist
+                |> viewWishlist model.cardStyle
             , h2 [ class "text-center" ] [ text "Nice to have" ]
             ]
         ]
 
 
-viewWishlist : Products -> Html Msg
-viewWishlist products =
+viewWishlist : Animation.Messenger.State msgA -> List ( Product, Extensions ) -> Html Msg
+viewWishlist cardStyle products =
     let
         productRow ( product, extensions ) =
-            div [ class "row wishlist-item" ]
-                [ div [ class "wishlist-item__image-container col-sm-3" ]
-                    [ img [ class "wishlist-item__image img-fluid", src product.image_url ] []
-                    , span [ class "wishlist-item__rank" ] [ text (toString extensions.rank) ]
+            let
+                animationStyle =
+                    -- this is nonsense, need to pass the whole model because I need the set cardRanksToSwap
+                    Animation.render cardStyle
+            in
+                div (animationStyle ++ [ class "row wishlist-item" ])
+                    [ div [ class "wishlist-item__image-container col-sm-3" ]
+                        [ img [ class "wishlist-item__image img-fluid", src product.image_url ] []
+                        , span [ class "wishlist-item__rank" ] [ text (toString extensions.rank) ]
+                        ]
+                    , div [ class "col-sm-6" ]
+                        [ p [ class "wishlist-item__name" ] [ text product.name ]
+                        , p [ class "wishlist-item__price" ] [ text <| "$" ++ toString product.price ]
+                        ]
+                    , div [ class "wishlist-item__buttons col-sm-3" ]
+                        [ upvoteButton extensions.rank
+                        , downvoteButton extensions.rank products
+                        ]
                     ]
-                , div [ class "col-sm-6" ]
-                    [ p [ class "wishlist-item__name" ] [ text product.name ]
-                    , p [ class "wishlist-item__price" ] [ text <| "$" ++ toString product.price ]
-                    ]
-                , div [ class "wishlist-item__buttons col-sm-3" ]
-                    [ upvoteButton extensions.rank
-                    , downvoteButton extensions.rank products
-                    ]
-                ]
     in
         div [ class "wishlist-container" ] (List.map productRow products)
 
@@ -54,7 +64,7 @@ upvoteButton rank =
     if rank > 1 then
         a
             [ class "btn btn-secondary round"
-            , onClick (Up rank)
+            , onClick <| SwapCards (Up rank)
             , href "#"
             ]
             [ icon "arrow-up" ]
@@ -68,7 +78,7 @@ downvoteButton rank products =
     if rank < List.length products then
         a
             [ class "btn btn-primary round"
-            , onClick (Down rank)
+            , onClick <| SwapCards (Down rank)
             , href "#"
             ]
             [ icon "arrow-down" ]

@@ -19,4 +19,5 @@ type Msg
     | Down Int
     | Animate Animation.Msg
     | FadeInFadeOut Msg
+    | SwapCards Msg
     | ModalMsg Modal.State

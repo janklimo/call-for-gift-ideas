@@ -6,6 +6,7 @@ import Wizard.Utils exposing (..)
 import Time exposing (second)
 import Animation
 import Animation.Messenger
+import Set exposing (Set)
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -108,6 +109,45 @@ update msg model =
              }
                 ! []
             )
+
+        SwapCards msg ->
+            let
+                cardRanksToSwap =
+                    case msg of
+                        Up rank ->
+                            Set.fromList [ rank, rank - 1 ]
+
+                        Down rank ->
+                            Set.fromList [ rank, rank + 1 ]
+
+                        _ ->
+                            Set.empty
+            in
+                { model
+                    | cardRanksToSwap = cardRanksToSwap
+                    , cardStyle =
+                        Animation.interrupt
+                            [ Animation.toWith
+                                (Animation.easing
+                                    { duration = 0.25 * second
+                                    , ease = (\x -> x ^ 2)
+                                    }
+                                )
+                                [ Animation.opacity 0
+                                ]
+                            , Animation.Messenger.send msg
+                            , Animation.toWith
+                                (Animation.easing
+                                    { duration = 0.25 * second
+                                    , ease = (\x -> x ^ 2)
+                                    }
+                                )
+                                [ Animation.opacity 1
+                                ]
+                            ]
+                            model.cardStyle
+                }
+                    ! []
 
         ModalMsg state ->
             { model | modalState = state } ! []
