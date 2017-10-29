@@ -17,7 +17,11 @@ type Msg
     | StartAgain
     | Up Int
     | Down Int
-    | Animate Animation.Msg
     | FadeInFadeOut Msg
     | SwapCards Msg
-    | ModalMsg Modal.State
+    | ConfirmDeletion Int
+    | ToggleModalState Modal.State
+    | AnimatedDelete Int
+      -- private messages
+    | Animate Animation.Msg
+    | Delete Int

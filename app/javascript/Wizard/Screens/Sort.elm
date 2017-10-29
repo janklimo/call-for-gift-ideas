@@ -6,7 +6,6 @@ import Html exposing (Html, text, div, h1, h2, span, p, a, img)
 import Html.Attributes exposing (..)
 import Animation
 import Set exposing (Set)
-import Bootstrap.Modal as Modal
 
 
 -- internal dependencies
@@ -30,7 +29,7 @@ viewSortScreen model =
             , viewWishlist model
             , h2 [ class "text-center" ] [ text "Nice to have" ]
             ]
-        , confirmationModal model.modalState
+        , confirmationModal model
         ]
 
 
@@ -48,7 +47,7 @@ viewWishlist model =
                 -- only animate the two cards that are being swapped
                 -- defined as Set named cardRanksToSwap
                 animationStyle =
-                    if Set.member extensions.rank model.cardRanksToSwap then
+                    if Set.member extensions.rank model.cardRanksToAnimate then
                         Animation.render model.cardStyle
                     else
                         []
@@ -68,7 +67,7 @@ viewWishlist model =
                         ]
                     , a
                         [ class "wishlist-item__delete-link"
-                        , onClick <| ModalMsg Modal.visibleState
+                        , onClick <| ConfirmDeletion extensions.rank
                         , href "#"
                         ]
                         [ text "Delete" ]

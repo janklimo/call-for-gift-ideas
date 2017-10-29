@@ -1,12 +1,19 @@
 module Wizard.Update exposing (..)
 
-import Wizard.Msgs exposing (..)
-import Wizard.Models exposing (..)
-import Wizard.Utils exposing (..)
+-- external modules
+
 import Time exposing (second)
 import Animation
 import Animation.Messenger
 import Set exposing (Set)
+import Bootstrap.Modal as Modal
+
+
+-- internal modules
+
+import Wizard.Msgs exposing (..)
+import Wizard.Models exposing (..)
+import Wizard.Utils exposing (..)
 
 
 fadeInFadeOut : Msg -> Model -> Animation.Messenger.State Msg
@@ -100,16 +107,6 @@ update msg model =
             in
                 { model | products = List.map updateProduct model.products } ! []
 
-        Animate animMsg ->
-            let
-                ( newStyle, cmd ) =
-                    Animation.Messenger.update animMsg model.cardStyle
-            in
-                ( { model | cardStyle = newStyle }, cmd )
-
-        FadeInFadeOut msg ->
-            { model | cardStyle = fadeInFadeOut msg model } ! []
-
         SwapCards msg ->
             let
                 cardRanksToSwap =
@@ -124,10 +121,50 @@ update msg model =
                             Set.empty
             in
                 { model
-                    | cardRanksToSwap = cardRanksToSwap
+                    | cardRanksToAnimate = cardRanksToSwap
                     , cardStyle = fadeInFadeOut msg model
                 }
                     ! []
 
-        ModalMsg state ->
+        FadeInFadeOut msg ->
+            { model | cardStyle = fadeInFadeOut msg model } ! []
+
+        ConfirmDeletion productRank ->
+            { model
+                | modalState = Modal.visibleState
+                , cardRankToDelete = productRank
+            }
+                ! []
+
+        ToggleModalState state ->
             { model | modalState = state } ! []
+
+        AnimatedDelete productRank ->
+            { model
+                | cardRanksToAnimate = Set.singleton productRank
+                , modalState = Modal.hiddenState
+                , cardStyle = fadeInFadeOut (Delete productRank) model
+            }
+                ! []
+
+        -- private messages
+        Animate animMsg ->
+            let
+                ( newStyle, cmd ) =
+                    Animation.Messenger.update animMsg model.cardStyle
+            in
+                ( { model | cardStyle = newStyle }, cmd )
+
+        Delete productRank ->
+            let
+                -- update ranks of all products below the deleted product
+                updateRanks ( product, extensions ) =
+                    if extensions.rank == productRank then
+                        ( product, { extensions | liked = False } )
+                    else if extensions.rank > productRank then
+                        ( product, { extensions | rank = extensions.rank - 1 } )
+                    else
+                        ( product, extensions )
+            in
+                { model | products = List.map updateRanks model.products }
+                    ! []

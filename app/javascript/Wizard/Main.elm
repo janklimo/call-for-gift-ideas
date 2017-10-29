@@ -33,6 +33,7 @@ init flags =
             initialCardStyle
             Modal.hiddenState
             Set.empty
+            0
             ! []
 
 

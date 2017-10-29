@@ -44,5 +44,6 @@ type alias Model =
     , products : Products
     , cardStyle : Animation.Messenger.State Msg
     , modalState : Modal.State
-    , cardRanksToSwap : Set Int
+    , cardRanksToAnimate : Set Int
+    , cardRankToDelete : Int
     }
