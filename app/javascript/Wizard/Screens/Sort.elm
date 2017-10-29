@@ -73,7 +73,19 @@ viewWishlist model =
                         [ text "Delete" ]
                     ]
     in
-        div [ class "wishlist-container" ] (List.map productRow products)
+        if List.isEmpty products == False then
+            div [ class "wishlist-container" ] (List.map productRow products)
+        else
+            div [ class "wishlist-container text-center" ]
+                [ p [] [ text "Your wishlist is empty 😱" ]
+                , p [] [ text "Wanna give the product ideas a quick second look?" ]
+                , a
+                    [ class "btn btn-primary form-submit"
+                    , onClick StartAgain
+                    , href "#"
+                    ]
+                    [ text "Ok \x1F917" ]
+                ]
 
 
 upvoteButton : Int -> Html Msg

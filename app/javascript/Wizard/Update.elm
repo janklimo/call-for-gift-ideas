@@ -81,7 +81,11 @@ update msg model =
                     else
                         ( product, extensions )
             in
-                { model | products = List.map updateProduct model.products } ! []
+                { model
+                    | products = List.map updateProduct model.products
+                    , currentPage = Cards
+                }
+                    ! []
 
         Up productRank ->
             let
