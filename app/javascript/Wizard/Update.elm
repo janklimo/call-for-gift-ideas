@@ -133,6 +133,9 @@ update msg model =
         FadeInFadeOut msg ->
             { model | cardStyle = fadeInFadeOut msg model } ! []
 
+        ToggleModalState state ->
+            { model | modalState = state } ! []
+
         ConfirmDeletion productRank ->
             { model
                 | modalState = Modal.visibleState
@@ -140,14 +143,12 @@ update msg model =
             }
                 ! []
 
-        ToggleModalState state ->
-            { model | modalState = state } ! []
-
-        AnimatedDelete productRank ->
+        -- the card to be deleted is set in ConfirmDeletion
+        AnimatedDelete ->
             { model
-                | cardRanksToAnimate = Set.singleton productRank
+                | cardRanksToAnimate = Set.singleton model.cardRankToDelete
                 , modalState = Modal.hiddenState
-                , cardStyle = fadeInFadeOut (Delete productRank) model
+                , cardStyle = fadeInFadeOut (Delete model.cardRankToDelete) model
             }
                 ! []
 

@@ -21,7 +21,7 @@ type Msg
     | SwapCards Msg
     | ConfirmDeletion Int
     | ToggleModalState Modal.State
-    | AnimatedDelete Int
+    | AnimatedDelete
       -- private messages
     | Animate Animation.Msg
     | Delete Int

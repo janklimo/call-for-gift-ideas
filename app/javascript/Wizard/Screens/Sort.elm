@@ -24,11 +24,7 @@ viewSortScreen model =
             [ h1 [] [ text "Any Preferences?" ]
             , p [] [ text "Let's order your wishlist before we're done!" ]
             ]
-        , div [ class "wishlist-items-container" ]
-            [ h2 [ class "text-center" ] [ text "OMG I need this in my life  😻" ]
-            , viewWishlist model
-            , h2 [ class "text-center" ] [ text "Nice to have" ]
-            ]
+        , div [ class "wishlist-items-container" ] [ viewWishlist model ]
         , confirmationModal model
         ]
 
@@ -74,7 +70,11 @@ viewWishlist model =
                     ]
     in
         if List.isEmpty products == False then
-            div [ class "wishlist-container" ] (List.map productRow products)
+            div []
+                [ h2 [ class "text-center" ] [ text "OMG I need this in my life  😻" ]
+                , div [ class "wishlist-container" ] (List.map productRow products)
+                , h2 [ class "text-center" ] [ text "Nice to have" ]
+                ]
         else
             div [ class "wishlist-container text-center" ]
                 [ p [] [ text "Your wishlist is empty 😱" ]

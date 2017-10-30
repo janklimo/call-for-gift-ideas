@@ -29,7 +29,7 @@ confirmationModal model =
                 [ text "Close" ]
             , Button.button
                 [ Button.primary
-                , Button.attrs [ onClick <| AnimatedDelete model.cardRankToDelete ]
+                , Button.attrs [ onClick <| AnimatedDelete ]
                 ]
                 [ text "Remove" ]
             ]
