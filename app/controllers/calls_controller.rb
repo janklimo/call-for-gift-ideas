@@ -19,7 +19,7 @@ class CallsController < ApplicationController
     if call.update(call_params.merge(status: :completed))
       render json: { status: 'ok' }
     else
-      render json: { status: 'failed' }
+      render status: 422, json: { status: 'failed' }
     end
   end
 
@@ -29,20 +29,22 @@ class CallsController < ApplicationController
     if call.save
       render json: { status: 'ok' }
     else
-      render json: { status: 'failed' }
+      render status: 422, json: { status: 'failed' }
     end
   end
 
   private
 
   def call_params
-    params.permit(
-      :sender_name,
-      :sender_email,
-      :recipient_name,
-      :recipient_email,
-      :recipient_sex,
-      preferences: [],
-    )
+    params
+      .require(:call)
+      .permit(
+        :sender_name,
+        :sender_email,
+        :recipient_name,
+        :recipient_email,
+        :recipient_sex,
+        preferences: [],
+      )
   end
 end
