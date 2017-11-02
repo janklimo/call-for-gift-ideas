@@ -1,5 +1,5 @@
 class CallSerializer < ActiveModel::Serializer
-  attributes :recipient_name, :products
+  attributes :slug, :recipient_name, :products
 
   def products
     ActiveModelSerializers::SerializableResource.new(

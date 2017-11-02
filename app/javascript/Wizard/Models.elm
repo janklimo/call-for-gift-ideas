@@ -7,7 +7,8 @@ import Set exposing (Set)
 
 
 type alias Flags =
-    { recipient_name : String
+    { slug : String
+    , recipient_name : String
     , products : List Product
     }
 
@@ -39,7 +40,8 @@ defaultExtensions =
 
 
 type alias Model =
-    { recipientName : String
+    { slug : String
+    , recipientName : String
     , currentPage : Page
     , products : Products
     , cardStyle : Animation.Messenger.State Msg

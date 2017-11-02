@@ -21,13 +21,14 @@ withDefaultExtensions products =
 init : Flags -> ( Model, Cmd Msg )
 init flags =
     let
-        { recipient_name, products } =
+        { recipient_name, products, slug } =
             flags
 
         initialCardStyle =
             Animation.style [ Animation.opacity 1.0 ]
     in
-        Model recipient_name
+        Model slug
+            recipient_name
             Welcome
             (withDefaultExtensions products)
             initialCardStyle
