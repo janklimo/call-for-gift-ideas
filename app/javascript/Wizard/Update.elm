@@ -7,6 +7,7 @@ import Animation
 import Animation.Messenger
 import Set exposing (Set)
 import Bootstrap.Modal as Modal
+import RemoteData exposing (RemoteData(..))
 
 
 -- internal modules
@@ -14,6 +15,7 @@ import Bootstrap.Modal as Modal
 import Wizard.Msgs exposing (..)
 import Wizard.Models exposing (..)
 import Wizard.Utils exposing (..)
+import Wizard.Requests exposing (submitWishlistMsg)
 
 
 fadeInFadeOut : Msg -> Model -> Animation.Messenger.State Msg
@@ -151,6 +153,30 @@ update msg model =
                 , cardStyle = fadeInFadeOut (Delete model.cardRankToDelete) model
             }
                 ! []
+
+        HandleSubmitWishlistResponse data ->
+            let
+                page =
+                    case data of
+                        RemoteData.Failure a ->
+                            Wizard.Msgs.Failure
+
+                        RemoteData.Success a ->
+                            Wizard.Msgs.Success
+
+                        _ ->
+                            Sort
+            in
+                { model
+                    | requestStatus = data
+                    , currentPage = page
+                }
+                    ! []
+
+        SubmitWishlist ->
+            ( { model | requestStatus = Loading }
+            , submitWishlistMsg model
+            )
 
         -- private messages
         Animate animMsg ->

@@ -32,6 +32,7 @@ class CallDashboard < Administrate::BaseDashboard
     :recipient_name,
     :recipient_email,
     :recipient_sex,
+    :status,
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES

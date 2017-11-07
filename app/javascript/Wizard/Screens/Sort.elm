@@ -14,6 +14,7 @@ import Wizard.Models exposing (..)
 import Wizard.Msgs exposing (..)
 import Wizard.Utils exposing (..)
 import Wizard.Components.ConfirmationModal exposing (confirmationModal)
+import Wizard.Components.SubmitButton exposing (submitButton)
 import Utils exposing (onClick)
 
 
@@ -25,6 +26,7 @@ viewSortScreen model =
             , p [] [ text "Let's order your wishlist before we're done!" ]
             ]
         , div [ class "wishlist-items-container" ] [ viewWishlist model ]
+        , submitButton model "Submit"
         , confirmationModal model
         ]
 

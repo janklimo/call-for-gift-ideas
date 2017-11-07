@@ -1,13 +1,20 @@
 module Wizard.Main exposing (..)
 
+-- external modules
+
 import Html exposing (programWithFlags)
+import Animation
+import Bootstrap.Modal as Modal
+import Set exposing (Set)
+import RemoteData exposing (RemoteData(..))
+
+
+-- internal modules
+
 import Wizard.Msgs exposing (..)
 import Wizard.View exposing (view)
 import Wizard.Models exposing (..)
 import Wizard.Update exposing (update)
-import Animation
-import Bootstrap.Modal as Modal
-import Set exposing (Set)
 
 
 -- INIT
@@ -27,14 +34,16 @@ init flags =
         initialCardStyle =
             Animation.style [ Animation.opacity 1.0 ]
     in
-        Model slug
-            recipient_name
-            Welcome
-            (withDefaultExtensions products)
-            initialCardStyle
-            Modal.hiddenState
-            Set.empty
-            0
+        { slug = slug
+        , recipientName = recipient_name
+        , currentPage = Welcome
+        , products = withDefaultExtensions products
+        , cardStyle = initialCardStyle
+        , modalState = Modal.hiddenState
+        , cardRanksToAnimate = Set.empty
+        , cardRankToDelete = 0
+        , requestStatus = NotAsked
+        }
             ! []
 
 

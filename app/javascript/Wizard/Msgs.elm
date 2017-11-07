@@ -2,12 +2,15 @@ module Wizard.Msgs exposing (..)
 
 import Animation
 import Bootstrap.Modal as Modal
+import RemoteData exposing (WebData)
 
 
 type Page
     = Welcome
     | Cards
     | Sort
+    | Failure
+    | Success
 
 
 type Msg
@@ -22,6 +25,8 @@ type Msg
     | ConfirmDeletion Int
     | ToggleModalState Modal.State
     | AnimatedDelete
+    | HandleSubmitWishlistResponse (WebData String)
+    | SubmitWishlist
       -- private messages
     | Animate Animation.Msg
     | Delete Int

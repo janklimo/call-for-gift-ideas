@@ -1,9 +1,16 @@
 module Wizard.Models exposing (..)
 
+-- external modules
+
 import Animation.Messenger
-import Wizard.Msgs exposing (..)
 import Bootstrap.Modal as Modal
 import Set exposing (Set)
+import RemoteData exposing (RemoteData(..), WebData)
+
+
+-- internal modules
+
+import Wizard.Msgs exposing (..)
 
 
 type alias Flags =
@@ -48,4 +55,5 @@ type alias Model =
     , modalState : Modal.State
     , cardRanksToAnimate : Set Int
     , cardRankToDelete : Int
+    , requestStatus : WebData String
     }
