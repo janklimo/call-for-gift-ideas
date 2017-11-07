@@ -4,7 +4,8 @@ import Html exposing (Html, text, div, h1, h2, button, span, p, a, img, i)
 import Html.Attributes exposing (..)
 import Wizard.Models exposing (..)
 import Wizard.Msgs exposing (..)
-import Wizard.Utils exposing (icon, likedProductsCount, undecidedProducts, minimumLikedCount)
+import Wizard.Utils exposing (..)
+import Wizard.Components.ProductDescription exposing (previewText)
 import Utils exposing (onClick)
 import Animation
 import Animation.Messenger
@@ -92,7 +93,7 @@ viewCard product cardStyle =
                             [ a [ href product.url, target "_blank", class "btn more" ] [ text "Learn more" ]
                             ]
                         ]
-                    , p [ class "description" ] [ text product.description ]
+                    , p [ class "description" ] [ previewText product extensions ]
                     ]
                 , div [ class "text-center buttons" ]
                     [ a

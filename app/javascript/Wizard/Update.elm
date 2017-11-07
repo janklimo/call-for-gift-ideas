@@ -178,6 +178,16 @@ update msg model =
             , submitWishlistMsg model
             )
 
+        ToggleDescription id ->
+            let
+                updateProduct ( product, extensions ) =
+                    if product.id == id then
+                        ( product, { extensions | showingFullDescription = not extensions.showingFullDescription } )
+                    else
+                        ( product, extensions )
+            in
+                { model | products = List.map updateProduct model.products } ! []
+
         -- private messages
         Animate animMsg ->
             let

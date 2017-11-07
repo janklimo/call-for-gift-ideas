@@ -27,6 +27,7 @@ type Msg
     | AnimatedDelete
     | HandleSubmitWishlistResponse (WebData String)
     | SubmitWishlist
+    | ToggleDescription Int
       -- private messages
     | Animate Animation.Msg
     | Delete Int

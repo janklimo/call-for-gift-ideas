@@ -3,7 +3,7 @@ class CallSerializer < ActiveModel::Serializer
 
   def products
     ActiveModelSerializers::SerializableResource.new(
-      object.products,
+      object.products.order("RANDOM()"),
       each_serializer: ProductSerializer
     )
   end
