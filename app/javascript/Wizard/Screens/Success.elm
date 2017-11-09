@@ -11,7 +11,7 @@ viewSuccessScreen : Model -> Html Msg
 viewSuccessScreen model =
     div [ class "card success" ]
         [ img [ src "https://s3-us-west-1.amazonaws.com/slackface/party.gif" ] []
-        , h1 [ class "text-center success__headline" ] [ text "Success 😻" ]
+        , h1 [ class "text-center success__headline" ] [ text ("You Did It, " ++ model.recipientName ++ "! 😻") ]
         , div [ class "success__body text-center" ]
             [ p [] [ text "Your wishlist has been sent to the person who requested it 🚀" ]
             , p [] [ text "Time to get excited about the awesome present you're about to receive 💖" ]
