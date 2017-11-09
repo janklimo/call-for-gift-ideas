@@ -87,7 +87,6 @@ All of these are managed by `yarn`.
 * [database_cleaner](https://github.com/DatabaseCleaner/database_cleaner)
 * [devise](https://github.com/plataformatec/devise)
 * [factory_girl_rails](https://github.com/thoughtbot/factory_girl_rails)
-* [high_voltage](https://github.com/thoughtbot/high_voltage)
 * [memory_profiler](https://github.com/SamSaffron/memory_profiler)
 * [poltergeist](https://github.com/teampoltergeist/poltergeist)
 * [rack-mini-profiler](https://github.com/MiniProfiler/rack-mini-profiler)

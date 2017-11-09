@@ -17,6 +17,10 @@ class Call < ApplicationRecord
     products.map(&:image_url)
   end
 
+  def self.total_wishlist_items_count
+    Call.pluck("SUM(array_length(preferences, 1))").first
+  end
+
   private
 
   def generate_slug

@@ -26,7 +26,6 @@ describe Call, type: :model do
 
   describe 'products' do
     before do
-      allow_any_instance_of(Paperclip::Attachment).to receive(:save).and_return(true)
       @drill = create(:product, name: 'Drill', target_audience: :men)
       @jet = create(:product, name: 'Jet', target_audience: :men)
       @makeup = create(:product, name: 'Makeup', target_audience: :women)
@@ -35,6 +34,17 @@ describe Call, type: :model do
 
     it 'loads the correct products' do
       expect(@call.products).to eq [@makeup]
+    end
+  end
+
+  describe 'total_wishlist_items_count' do
+    before do
+      create(:call, preferences: ['1', '5', '2'])
+      create(:call, preferences: ['1', '5', '2', '11', '9'])
+    end
+
+    it 'returns the right number' do
+      expect(Call.total_wishlist_items_count).to eq 8
     end
   end
 end
