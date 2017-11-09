@@ -1,0 +1,29 @@
+.success {
+  max-width: 450px;
+  padding: 0;
+
+  .highlight {
+    color: $red;
+  }
+}
+
+.card {
+  .success__headline {
+    margin: 20px 0 0;
+  }
+
+  .success__byline {
+    font-size: 1.5em;
+    color: $green;
+    margin: 30px 0 18px;
+  }
+
+  .sc-icon .icon {
+    width: 1.8em;
+    height: 1.8em;
+  }
+}
+
+.success__body {
+  padding: 20px;
+}

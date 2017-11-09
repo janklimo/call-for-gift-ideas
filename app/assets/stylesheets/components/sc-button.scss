@@ -1,0 +1,214 @@
+/* -------------------------------------------------
+----------------------------------------------------
+	MATTBOLDT.COM
+	Copyright (c) 2013 Matt Boldt
+----------------------------------------------------
+----------------------------------------------------
+	CODE IS AVAILABLE FOR USE FREE OF CHARGE
+	UNDER THE MIT LICENSE
+	http://opensource.org/licenses/MIT
+----------------------------------------------------
+----------------------------------------------------
+	If you'd like to credit me, or even donate
+	a few bucks that'd be very much appreciated!
+	Visit http://www.mattboldt.com/demos/social-buttons/
+	for more info.
+----------------------------------------------------
+-------------------------------------------------- */
+
+// Mixins and variables
+@mixin linear-gradient($dir, $basecolor, $hi:10%, $lo:10%, $pos:100%){
+	background-color: darken($basecolor, $lo);
+	background-image: -webkit-linear-gradient($dir, lighten($basecolor, $hi), darken($basecolor, $lo) $pos);
+	background-image: -moz-linear-gradient($dir, lighten($basecolor, $hi), darken($basecolor, $lo));
+	background-image: -ms-linear-gradient($dir, lighten($basecolor, $hi), darken($basecolor, $lo));
+	background-image: -o-linear-gradient($dir, lighten($basecolor, $hi), darken($basecolor, $lo));
+	background-image: linear-gradient($dir, lighten($basecolor, $hi), darken($basecolor, $lo));
+}
+@mixin border-radius($rad) {
+	border-radius:#{$rad};
+	-webkit-border-radius:#{$rad};
+	-moz-border-radius:#{$rad};
+	-ms-border-radius:#{$rad};
+	-o-border-radius:#{$rad};
+}
+
+.sc-btn{
+	display: inline-block;
+	position: relative;
+	margin:0 .25em .5em 0;
+	padding:0;
+	color:#fff;
+	font-family: "Helvetica Neue", "Helvetica", sans-serif;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 1em;
+	text-decoration: none;
+	text-shadow:rgba(0,0,0,0.3) 0px -.1em 0px;
+	border:0;
+	// border:rgba(0,0,0,0.2) 1px solid;
+	// border-bottom-color:rgba(0,0,0,0.3);
+	@include border-radius(.4em);
+	$basecolor: #333;
+	@include linear-gradient(top, $basecolor, 15%);
+	box-shadow:inset rgba(0,0,0,0.1) 0px -0.15em 0px, inset rgba(255,255,255,0.2) 0px 0.15em 0px, rgba(0,0,0,0.3) 0px 0.1em .3em;
+	text-align: center;
+	background-repeat: no-repeat;
+	-webkit-transition:background-position .1s ease-in-out;
+	-webkit-appearance:none;
+	cursor: pointer;
+	overflow: hidden;
+	&:hover{
+		color:#fff;
+	}
+	&:active{
+		box-shadow:rgba(255,255,255,0.2) 0 .10em 0, inset rgba(0,0,0,0.3) 0px .25em 1em;
+	}
+}
+
+	.sc-icon, .sc-text{
+		display: block;
+		float:left;
+	}
+	.sc-icon{
+		margin:0 -.4em 0 0;
+		padding:0.6em .8em .5em;
+		border-right:rgba(255,255,255,0.1) .1em solid;
+		box-shadow:inset rgba(0,0,0,0.1) -.1em 0px 0px;
+	}
+	.sc-text{
+		padding:.95em 1em .85em 1em;
+		font-size: 1.15em;
+		text-align: center;
+	}
+	svg{
+		width:1.8em;
+		height:1.8em;
+		fill:#fff;
+	}
+
+// block level button
+.sc-block{
+	display: block;
+}
+
+// Styles / sizes
+.sc--big{
+	font-size: 24px;
+}
+.sc--small{
+	font-size: 12px;
+}
+.sc--tiny{
+	font-size: 9px;
+	.sc-text{
+		padding:.85em .75em .5em .75em;
+		text-shadow:rgba(0,0,0,0.3) 0px -1px 0px;
+	}
+	.sc-icon{
+		padding:.5em .75em .5em .75em;
+		border-right:rgba(255,255,255,0.1) 1px solid;
+		box-shadow:inset rgba(0,0,0,0.1) -1px 0px 0px;
+	}
+}
+.sc--short{
+	.sc-icon{
+		padding:0.4em .9em .35em;
+	}
+	.sc-text{
+		padding:.75em 1em .75em 1em;
+	}
+}
+.sc--tall{
+	font-size: 1.15em;
+	.sc-icon{
+		padding:1em .9em .85em;
+	}
+	.sc-text{
+		padding:1.25em 1em 1em 1em;
+	}
+}
+.sc--round{
+	@include border-radius(5em);
+	.sc-icon{
+		padding:0.7em .8em .5em 1em;
+	}
+}
+.sc--flat{
+	.sc-icon{
+		border-color:transparent;
+	}
+	box-shadow:none;
+	background-image:none !important;
+	&:hover{
+		// box-shadow:inset rgba(50,50,50,.01) 0px 5em 0;
+	}
+	&:active{
+		box-shadow:inset rgba(0,0,0,0.3) 0px .15em 0.25em;
+	}
+}
+// Unique styles
+.sc--default{
+	color:#222;
+	text-shadow:rgba(255,255,255,0.4) 0 .1em 0;
+	$basecolor: #f8f8f8;
+	@include linear-gradient(top, $basecolor, 5%, 5%);
+	svg{
+		fill:#222;
+	}
+	&:hover{
+		color:#222;
+		@include linear-gradient(top, $basecolor, 15%, 15%, 90%);
+		background-color:lighten($basecolor, 2%);
+	}
+	&:active{
+		@include linear-gradient(top, $basecolor, 5%);
+	}
+}
+.sc--facebook{
+	$basecolor: #425c9e;
+	@include linear-gradient(top, $basecolor);
+	&:hover{
+		@include linear-gradient(top, $basecolor, 15%, 12%, 90%);
+		background-color:lighten($basecolor, 2%);
+	}
+	&:active{
+		@include linear-gradient(top, $basecolor, 5%);
+	}
+}
+
+.sc--twitter{
+	$basecolor: #18aaec;
+	@include linear-gradient(top, $basecolor);
+	&:hover{
+		@include linear-gradient(top, $basecolor, 20%, 12%, 90%);
+		background-color:lighten($basecolor, 2%);
+	}
+	&:active{
+		@include linear-gradient(top, $basecolor, 5%);
+	}
+}
+
+#social-sharing-buttons {
+  text-align: center;
+  margin: 0 0 25px;
+
+  a:active, a:focus {
+    color: white;
+  }
+
+  .fa {
+    color: #e01e1e;
+  }
+
+  h2 {
+    text-align: center;
+    padding-top: 20px;
+    margin-bottom: 25px;
+    font-weight: bolder;
+  }
+
+  .buttons {
+    margin: 40px 0 15px;
+  }
+}
