@@ -5,6 +5,19 @@
   <p>
     Total number of products wished for: <span><%= @total_count %></span>
   </p>
+
+  <h1 class="text-center">Demos</h1>
+  <div class="row text-center mb-3">
+    <div class="col-sm-6">
+      <%= link_to 'For Men 👨', call_path(@demo_male.slug),
+        class: 'btn btn-primary form-submit', target: '_blank' %>
+    </div>
+    <div class="col-sm-6">
+      <%= link_to 'For Women 👩', call_path(@demo_female.slug),
+        class: 'btn btn-primary form-submit', target: '_blank' %>
+    </div>
+  </div>
+
   <div id="new-call"></div>
 </div>
 

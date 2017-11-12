@@ -106,5 +106,20 @@ describe CallsController, type: :controller do
         expect(@call).to be_completed
       end
     end
+
+    context 'demo calls' do
+      before { @call.update(demo: true) }
+      it 'never get toggled to completed' do
+        params = { id: @call.slug, call: { preferences: [42] } }
+        put :update, params: params
+        resp = JSON.parse(response.body)
+        expect(resp['status']).to eq 'ok'
+
+        @call.reload
+        expect(@call).to be_active
+        # updating is skipped
+        expect(@call.preferences).to be_empty
+      end
+    end
   end
 end

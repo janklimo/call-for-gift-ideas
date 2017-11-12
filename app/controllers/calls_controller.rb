@@ -16,6 +16,11 @@ class CallsController < ApplicationController
       return
     end
 
+    if call.demo?
+      render json: { status: 'ok' }
+      return
+    end
+
     if call.update(call_params.merge(status: :completed))
       render json: { status: 'ok' }
     else

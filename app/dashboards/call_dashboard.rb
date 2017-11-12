@@ -17,6 +17,7 @@ class CallDashboard < Administrate::BaseDashboard
     sender_email: Field::String,
     status: Enum.with_options(searchable: false),
     preferences: Field::Text,
+    demo: Field::Boolean,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze
@@ -33,6 +34,7 @@ class CallDashboard < Administrate::BaseDashboard
     :recipient_email,
     :recipient_sex,
     :status,
+    :demo,
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -47,6 +49,7 @@ class CallDashboard < Administrate::BaseDashboard
     :sender_email,
     :status,
     :preferences,
+    :demo,
     :created_at,
     :updated_at,
   ].freeze
@@ -62,6 +65,7 @@ class CallDashboard < Administrate::BaseDashboard
     :sender_email,
     :status,
     :preferences,
+    :demo,
   ].freeze
 
   # Overwrite this method to customize how calls are displayed
