@@ -33,6 +33,7 @@ class CallsController < ApplicationController
 
     if call.save
       render json: { status: 'ok' }
+      Notifier.send_call(call).deliver_now
     else
       render status: 422, json: { status: 'failed' }
     end
