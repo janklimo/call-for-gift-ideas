@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 describe CallsController, type: :controller do
+  include_context 'mailer'
+
   describe 'show' do
     context 'call exists' do
       before { @call = create(:call) }
@@ -21,7 +23,7 @@ describe CallsController, type: :controller do
 
   describe 'create' do
     context 'successful creation' do
-      it 'renders successful status' do
+      it 'renders successful status and sends out an email' do
         params = {
           call: {
             sender_name: 'Jamie',
@@ -33,6 +35,10 @@ describe CallsController, type: :controller do
         post :create, params: params
         resp = JSON.parse(response.body)
         expect(resp['status']).to eq 'ok'
+        email = ActionMailer::Base.deliveries.first
+        expect(ActionMailer::Base.deliveries.size).to eq 1
+        expect(email.to).to eq ['jon@snow.com']
+        expect(email.subject).to eq 'Jon, Pick Your Present 😻'
       end
 
       context 'recipient sex is included' do
@@ -65,6 +71,7 @@ describe CallsController, type: :controller do
         }
         post :create, params: params
         expect(response.status).to eq 422
+        expect(ActionMailer::Base.deliveries.size).to eq 0
       end
     end
   end
