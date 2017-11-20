@@ -7,6 +7,16 @@ body {
   font-family: 'Muli', sans-serif;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Lobster', cursive;
+  color: $green;
+}
+
+h1 {
+  margin-bottom: 2rem;
+}
+
+
 #page {
   margin-top: 2.75rem;
 }
