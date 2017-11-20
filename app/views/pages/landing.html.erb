@@ -1,24 +1,38 @@
 <% content_for :page_title, 'Call for Gift Ideas!' %>
 
-<div class="card">
-  <h1 class="text-center">Welcome!</h1>
-  <p>
-    Total number of products wished for: <span><%= @total_count %></span>
-  </p>
+<section id="christmas-hero">
+  <h1 class="ttl">Call for<br>Gift Ideas!</h1>
+  <p>Find the perfect gift idea every time</p>
+  <div class="layer-6"></div>
+  <div class="layer-5"></div>
+  <div class="layer-4"></div>
+  <div class="layer-3"></div>
+  <div class="layer-2"></div>
+  <div class="santa"></div>
+  <div class="layer-1"></div>
+</section>
 
-  <h1 class="text-center">Demos</h1>
-  <div class="row text-center mb-3">
-    <div class="col-sm-6">
-      <%= link_to 'For Men 👨', call_path(@demo_male.slug),
-        class: 'btn btn-primary form-submit', target: '_blank' %>
+<div id="page" class="container">
+  <div class="card">
+    <h1 class="text-center">Welcome!</h1>
+    <p>
+      Total number of products wished for: <span><%= @total_count %></span>
+    </p>
+
+    <h1 class="text-center">Demos</h1>
+    <div class="row text-center mb-3">
+      <div class="col-sm-6">
+        <%= link_to 'For Men 👨', call_path(@demo_male.slug),
+          class: 'btn btn-primary form-submit', target: '_blank' %>
+      </div>
+      <div class="col-sm-6">
+        <%= link_to 'For Women 👩', call_path(@demo_female.slug),
+          class: 'btn btn-primary form-submit', target: '_blank' %>
+      </div>
     </div>
-    <div class="col-sm-6">
-      <%= link_to 'For Women 👩', call_path(@demo_female.slug),
-        class: 'btn btn-primary form-submit', target: '_blank' %>
-    </div>
+
+    <div id="new-call"></div>
   </div>
-
-  <div id="new-call"></div>
 </div>
 
 <div class="preloading" style="display: none;">

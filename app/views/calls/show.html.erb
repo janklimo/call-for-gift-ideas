@@ -3,10 +3,12 @@
   <%= javascript_tag "var preload = #{ @call.product_urls.to_json.html_safe };" %>
 <% end %>
 
-<%= content_tag :div,
-  id: "wizard",
-  data: @call_json do %>
-<% end %>
+<div id="page" class="container">
+  <%= content_tag :div,
+    id: "wizard",
+    data: @call_json do %>
+  <% end %>
+</div>
 
 <div class="preloading" style="display: none;">
   <%= image_tag "https://s3-us-west-2.amazonaws.com/callforgiftideas/ripple.gif" %>
