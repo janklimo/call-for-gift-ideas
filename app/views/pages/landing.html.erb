@@ -24,27 +24,46 @@
   <%= image_tag 'divider.png', class: 'divider' %>
 
   <h1>The Better Way</h1>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6">
+        <h1 class="number">1</h1>
+        <h2>Send</h2>
+        <p>Who are you finding a present for? Send them an anonymous call for
+        gift ideas using the form below. This takes 10 seconds or less 🏃💨
+        </p>
+        <p>See a demo of what they receive:</p>
+        <div class="buttons mb-3">
+          <%= link_to 'For Men 👨', call_path(@demo_male.slug),
+            class: 'btn btn-primary form-submit men', target: '_blank' %>
+          <%= link_to 'For Women 👩', call_path(@demo_female.slug),
+            class: 'btn btn-primary form-submit', target: '_blank' %>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <h1 class="number">2</h1>
+        <h2>Receive</h2>
+        <p>Receive their wishlist in your mailbox once they submit it!
+        Save yourself the time and headache brainstorming gift ideas.
+        Get them exactly what they want 💡</p>
+      </div>
+    </div>
+  </div>
 </section>
+
+<div class="white-bg">
+  <section id="count">
+    <div class="counter">
+      <div class="headline">
+        <%= @total_count %>
+      </div>
+      products wished for
+    </div>
+  </section>
+</div>
 
 <div id="page" class="container">
   <div class="card">
-    <h1 class="text-center">Welcome!</h1>
-    <p>
-      Total number of products wished for: <span><%= @total_count %></span>
-    </p>
-
-    <h1 class="text-center">Demos</h1>
-    <div class="row text-center mb-3">
-      <div class="col-sm-6">
-        <%= link_to 'For Men 👨', call_path(@demo_male.slug),
-          class: 'btn btn-primary form-submit', target: '_blank' %>
-      </div>
-      <div class="col-sm-6">
-        <%= link_to 'For Women 👩', call_path(@demo_female.slug),
-          class: 'btn btn-primary form-submit', target: '_blank' %>
-      </div>
-    </div>
-
     <div id="new-call"></div>
   </div>
 </div>

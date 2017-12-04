@@ -1,0 +1,28 @@
+#count {
+  min-height: 245px;
+  text-align: center;
+  background: asset-url('pink.png') repeat;
+
+  .counter {
+    position: relative;
+    top: 53px;
+    background: $green;
+    padding: 8px 14px 14px;
+    display: inline-block;
+    opacity: 0.95;
+    color: white;
+    font-size: 24px;
+
+    .headline {
+      font-size: 3rem;
+      color: darken($green, 40%);
+      font-weight: bolder;
+      text-shadow: 0 1px 0 rgba(255,255,255,0.4);
+    }
+  }
+}
+
+.white-bg {
+  background: white;
+  padding: 40px 0;
+}

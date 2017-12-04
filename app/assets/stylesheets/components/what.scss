@@ -11,4 +11,35 @@
     width: 120px;
     margin: 27px 0 17px;
   }
+
+  h1.number {
+    color: white;
+    background: #e8888e;
+    width: 55px;
+    height: 55px;
+    text-align: center;
+    margin: 0 auto;
+    border-radius: 50%;
+    padding: 7px 10px;
+    font-size: 34px;
+    margin-bottom: 10px;
+  }
+
+  h2 {
+    font-family: 'Muli', sans-serif;
+    font-weight: bold;
+    color: #4a4545;
+    font-size: 26px;
+    margin: 15px 0;
+  }
+
+  .btn-primary.men {
+    background: $blue;
+    border-color: $blue;
+    margin-right: 10px;
+
+    &:hover {
+      background: darken($blue, 10%);
+    }
+  }
 }
