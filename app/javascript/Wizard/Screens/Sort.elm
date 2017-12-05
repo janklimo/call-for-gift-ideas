@@ -73,9 +73,9 @@ viewWishlist model =
     in
         if List.isEmpty products == False then
             div []
-                [ h2 [ class "text-center" ] [ text "OMG I need this in my life  😻" ]
+                [ h2 [ class "text-center hint" ] [ text "OMG I need this in my life  😻" ]
                 , div [ class "wishlist-container" ] (List.map productRow products)
-                , h2 [ class "text-center" ] [ text "Nice to have" ]
+                , h2 [ class "text-center hint" ] [ text "Nice to have" ]
                 ]
         else
             div [ class "wishlist-container text-center" ]
