@@ -9,4 +9,8 @@ module ApplicationHelper
     else name
     end
   end
+
+  def svg_icon(clazz)
+    content_tag(:svg, content_tag(:use, "", { "xlink:href" => '#icon-' + clazz }), class: "icon icon-#{clazz}")
+  end
 end

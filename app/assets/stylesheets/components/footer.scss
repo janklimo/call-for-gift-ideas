@@ -1,0 +1,21 @@
+#footer {
+  color: #e8888e;
+  background: #F4F4F4;
+  height: 60px;
+  padding: 20px 0;
+
+  a {
+    color: $green;
+    text-decoration: none;
+    transition: $transition-base;
+
+    &:hover {
+      color: darken($green, 10%);
+    }
+  }
+
+  .icon {
+    width: 1.25em;
+    fill: #e8888e;
+  }
+}

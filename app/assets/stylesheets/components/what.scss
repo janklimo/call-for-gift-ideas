@@ -2,6 +2,19 @@
   background: white;
   padding: 2rem 1rem;
 
+  p {
+    font-style: italic;
+    color: #887b7b;
+  }
+
+  .highlight {
+    font-weight: bold;
+    color: #4a4545;
+    font-size: 22px;
+    margin: 15px 0;
+    font-style: normal;
+  }
+
   .gif {
     margin-top: 15px;
     border-radius: 20px;
