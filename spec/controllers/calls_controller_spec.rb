@@ -13,10 +13,20 @@ describe CallsController, type: :controller do
     end
 
     context 'call does not exist' do
-      it 'redirects to root' do
+      it 'redirects to root with a flash message' do
         slug = 'MonkeyBananaSomethingYellow'
         get :show, params: { id: slug }
         expect(response).to redirect_to root_url
+        expect(flash[:alert]).to eq "We couldn't find that :("
+      end
+    end
+
+    context 'call is inactive' do
+      before { @call = create(:call, status: :completed) }
+      it 'redirects to root with a flash message' do
+        get :show, params: { id: @call.slug }
+        expect(response).to redirect_to root_url
+        expect(flash[:notice]).to eq "This call has already been completed 👍"
       end
     end
   end

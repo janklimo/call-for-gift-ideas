@@ -2,10 +2,20 @@ class CallsController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def show
-    @call = Call.active.find_by(slug: params[:id])
-    @call_json = ActiveModelSerializers::SerializableResource
-      .new(@call, {}).to_json
-    redirect_to root_url unless @call
+    @call = Call.find_by(slug: params[:id])
+
+    if @call
+      if @call.active?
+        @call_json = ActiveModelSerializers::SerializableResource
+          .new(@call, {}).to_json
+      else
+        flash[:notice] = "This call has already been completed 👍"
+        redirect_to root_url
+      end
+    else
+      flash[:alert] = "We couldn't find that :("
+      redirect_to root_url
+    end
   end
 
   def update
