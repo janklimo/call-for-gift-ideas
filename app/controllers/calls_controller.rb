@@ -33,6 +33,7 @@ class CallsController < ApplicationController
 
     if call.update(call_params.merge(status: :completed))
       render json: { status: 'ok' }
+      Notifier.send_wishlist(call).deliver_now
     else
       render status: 422, json: { status: 'failed' }
     end

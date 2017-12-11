@@ -1,0 +1,60 @@
+<tr>
+  <td valign="top" style="padding: 40px 0 0 0;" class="mobile-hide">
+    <a href="<%= product.url %>" target="_blank">
+      <img src="<%= product.image_url %>" alt="<%= product.name %>" width="150" height="125" border="0" style="display: block; width: 150px; height: 125px;">
+    </a>
+  </td>
+  <td style="padding: 40px 0 0 0;" class="no-padding">
+    <table border="0" cellspacing="0" cellpadding="0" width="100%">
+      <tbody>
+        <tr>
+          <td align="left" style="padding: 0 0 5px 25px; font-size: 16px; font-family: Helvetica, Arial, sans-serif; font-weight: normal; color: #e46089;" class="padding-meta">
+            #<%= product_counter + 1 %>
+          </td>
+        </tr>
+        <tr>
+          <td align="left" style="padding: 0 0 5px 25px; font-size: 22px; font-family: Helvetica, Arial, sans-serif; font-weight: normal; color: #333333;" class="padding-copy">
+            <%= product.name %>
+          </td>
+        </tr>
+        <tr>
+          <td align="left" style="padding: 0 0 15px 25px; font-size: 13px; font-family: Helvetica, Arial, sans-serif; font-weight: normal; color: #aaaaaa;" class="padding-meta">
+            $<%= product.price %>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding:0 0 45px 25px;" align="left" class="padding">
+            <table border="0" cellspacing="0" cellpadding="0" class="mobile-button-container">
+              <tbody>
+                <tr>
+                  <td align="center">
+                    <!-- BULLETPROOF BUTTON -->
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="mobile-button-container">
+                      <tbody>
+                        <tr>
+                          <td align="center" style="padding: 0;" class="padding-copy">
+                            <table border="0" cellspacing="0" cellpadding="0" class="responsive-table">
+                              <tbody>
+                                <tr>
+                                  <td align="center">
+                                    <a href="<%= product.url %>" target="_blank" style="font-size: 15px; font-family: Helvetica, Arial, sans-serif; font-weight: normal; color: #ffffff; text-decoration: none; background-color: #4FC1E9; border-top: 10px solid #4FC1E9; border-bottom: 10px solid #4FC1E9; border-left: 20px solid #4FC1E9; border-right: 20px solid #4FC1E9; border-radius: 3px; -webkit-border-radius: 3px; -moz-border-radius: 3px; display: inline-block;" class="mobile-button">
+                                      Buy Now →
+                                    </a>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </td>
+</tr>

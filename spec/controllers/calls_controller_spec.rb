@@ -1,8 +1,6 @@
 require 'rails_helper'
 
 describe CallsController, type: :controller do
-  include_context 'mailer'
-
   describe 'show' do
     context 'call exists' do
       before { @call = create(:call) }
@@ -87,26 +85,36 @@ describe CallsController, type: :controller do
   end
 
   describe 'update' do
-    before { @call = create(:call) }
-    it 'renders successful status' do
-      params = { id: @call.slug, call: { preferences: [9, 42, 7] } }
+    before do
+      @call = create(:call)
+      @products = create_list(:product, 5)
+    end
+
+    it 'renders successful status and delivers an email' do
+      params = { id: @call.slug, call: { preferences: [@products[3].id, @products[1].id] } }
       put :update, params: params
       resp = JSON.parse(response.body)
       expect(resp['status']).to eq 'ok'
 
       @call.reload
-      expect(@call.preferences).to eq ['9', '42', '7']
+      expect(@call.preferences).to eq [@products[3].id.to_s, @products[1].id.to_s]
       expect(@call).to be_completed
+
+      # email delivery
+      email = ActionMailer::Base.deliveries.first
+      expect(ActionMailer::Base.deliveries.size).to eq 1
+      expect(email.to).to eq ['elon@musk.com']
+      expect(email.subject).to include "Elon, here's Jon's wishlist!"
     end
 
     it 'does not allow to un-complete a call' do
-      params = { id: @call.slug, call: { preferences: [9], status: 'active' } }
+      params = { id: @call.slug, call: { preferences: [@products[2].id], status: 'active' } }
       put :update, params: params
       resp = JSON.parse(response.body)
       expect(resp['status']).to eq 'ok'
 
       @call.reload
-      expect(@call.preferences).to eq ['9']
+      expect(@call.preferences).to eq [@products[2].id.to_s]
       expect(@call).to be_completed
     end
 

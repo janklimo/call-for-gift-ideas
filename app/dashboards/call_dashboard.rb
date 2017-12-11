@@ -62,6 +62,7 @@ class CallDashboard < Administrate::BaseDashboard
     :recipient_name,
     :recipient_email,
     :recipient_sex,
+    :sender_name,
     :sender_email,
     :status,
     :preferences,
