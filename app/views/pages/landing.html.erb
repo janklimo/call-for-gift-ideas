@@ -32,23 +32,26 @@
   <h1>The Better Way</h1>
   <div class="container">
     <div class="row">
-      <div class="col-sm-6">
+      <div class="col-sm-4">
         <h1 class="number">1</h1>
         <h2>Send</h2>
-        <p>Who are you finding a present for? Send them an anonymous call for
-        gift ideas using the form below. This takes 10 seconds or less 🏃💨
-        </p>
-        <p>See a demo of what they receive:</p>
+        <p>Who are you finding a present for? Fill in form below - it takes 10 seconds or less 🏃💨</p>
+      </div>
+      <div class="col-sm-4">
+        <h1 class="number">2</h1>
+        <h2>Wait</h2>
+        <p>We send the recipient an email with a link to a unique, 100% anonymous call for gift ideas.</p>
+        <p>It's a super simple and fun way to select from web's coolest gift ideas. Try a demo!</p>
         <div class="buttons mb-3">
           <%= link_to 'For Men 👨', call_path(@demo_male.slug),
             class: 'btn btn-primary form-submit men', target: '_blank' %>
           <%= link_to 'For Women 👩', call_path(@demo_female.slug),
             class: 'btn btn-primary form-submit', target: '_blank' %>
-        </div>
       </div>
-      <div class="col-sm-6">
-        <h1 class="number">2</h1>
-        <h2>Receive</h2>
+      </div>
+      <div class="col-sm-4">
+        <h1 class="number">3</h1>
+        <h2>Profit</h2>
         <p>Receive their wishlist in your mailbox once they submit it!
         Save yourself the time and headache brainstorming gift ideas.
         Get them exactly what they want 💡</p>
