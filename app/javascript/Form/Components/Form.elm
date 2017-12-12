@@ -11,6 +11,7 @@ import Html
         , a
         , h1
         , p
+        , span
         , select
         , option
         )
@@ -61,6 +62,13 @@ callForm model =
                 ]
             ]
         , div [ class "form-row" ]
+            [ p [ class "disclaimer" ]
+                [ text "Your info will "
+                , span [ class "never" ] [ text "never" ]
+                , text " be shared with the recipient. It's only used to deliver you their wishlist."
+                ]
+            ]
+        , div [ class "form-row" ]
             [ div [ class "form-group col-sm-4" ]
                 [ label [ for "recipientName", class "col-form-label" ] [ text "Recipient's Name" ]
                 , input
@@ -86,7 +94,7 @@ callForm model =
                     []
                 ]
             , div [ class "form-group col-sm-3" ]
-                [ label [ for "recipientSex", class "col-form-label" ] [ text "Recipient's Sex" ]
+                [ label [ for "recipientSex", class "col-form-label" ] [ text "Recipient's Gender" ]
                 , select
                     [ class ("form-control " ++ validate model.recipientSex model.validating)
                     , id "recipientSex"

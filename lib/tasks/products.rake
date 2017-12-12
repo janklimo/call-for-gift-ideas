@@ -24,7 +24,7 @@ namespace :products do
           product.description = ActionController::Base.helpers.strip_tags(post['content'])
           product.price = post['price']
           product.clicks_score = post['clicks_score']
-          product.url = post['link']
+          product.url = format_url(post['link'])
           product.image_url = post['image']
           product.target_audience = target_audience
           product.save!
@@ -35,6 +35,13 @@ namespace :products do
         end
       end
     end
+  end
+
+  def format_url(url)
+    parsed = URI.parse(url)
+    # screw affiliate tags
+    parsed.query = nil if url.include? 'amazon.com/dp/'
+    parsed.to_s
   end
 end
 

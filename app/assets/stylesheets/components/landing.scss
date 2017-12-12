@@ -30,3 +30,15 @@
     position: relative;
   }
 }
+
+#new-call {
+  .disclaimer {
+    color: #949494;
+    padding-left: 5px;
+    margin-top: -8px;
+
+    .never {
+      color: $red;
+    }
+  }
+}
